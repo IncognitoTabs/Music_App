@@ -7,6 +7,10 @@ body {
     background-color: #121212;
 }
 
+a {
+    text-decoration: none;
+}
+
 .col-md-2-5{
     flex: 0 0 auto;
     width: 20%;
