@@ -286,7 +286,7 @@ body {
 .img-size-category img{
     bottom: 0;
     -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
-    box-shadow: 0 2px 4px 0rgba(0,0,0,.2);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     height: 100px;
     position: absolute;
     width: 100px;
