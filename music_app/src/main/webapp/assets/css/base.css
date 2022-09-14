@@ -32,3 +32,15 @@ a {
 .border-radius {
     border-radius: 50px;
 }
+
+.col-2{
+    width: calc(100%/6);
+}
+
+.column-10{
+    width: calc(100% - calc(100%/6));
+}
+
+.column-2{
+    width: 100% - calc(100% - calc(100%/6));
+}
