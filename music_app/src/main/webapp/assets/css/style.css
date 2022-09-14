@@ -5,7 +5,7 @@
     height: 73px;
     width: 100%;
     position: fixed;
-    z-index: 3;
+    z-index: 30;
     background-color: hsl(0, 0%, 2%);
 }
 
@@ -13,8 +13,6 @@
     position: fixed;
     right: 0;
 }
-
-
 /* container */
 
 .folder-list {
