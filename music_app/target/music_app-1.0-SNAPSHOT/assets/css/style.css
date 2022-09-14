@@ -13,7 +13,6 @@
     position: fixed;
     right: 0;
 }
-
 /* container */
 
 .folder-list {
@@ -432,47 +431,186 @@
 
 
 /* music info */
-
 .container__info{
-    width: 83%;
-    height: auto;
+    width: calc(100% - calc(100%/6));
+    height: 1000px;
+    margin-left: calc(100%/6);
+    margin-top: 73px;
     padding: 0;
-    margin:0;
 }
 
+.header-info{
+    width: 100%;
+    height: 340px;
+    position: relative;
+}
 
 .header-info__img{
     width: 100%;
-    height: 340px;
-    background-image: url('https://bloganchoi.com/wp-content/uploads/2022/01/mot-trieu-like-bai-hat.jpg');
-    background-repeat: no-repeat;
-    background-position: top ;
-    float: right;
+    height: 100%;
+    object-fit: cover;
     position: relative;
 }
 
 .header-info__name{
     position: absolute;
-    color: rgb(255, 255, 255);
-    top: 1;
-    top: 130px;
-    left: 34px;
-    font-size: 100px;
-    font-weight: 800;
+    bottom: 50px;
+    left: 40px;
+    color: #fff;
+    font-size: 90px;
+    font-weight: 700;
 }
 
-.header-info__amount-litener{
+.header-info__amount-listener{
     position: absolute;
-    color: rgb(255, 255, 255);
-    top: 1;
-    top: 290px;
-    left: 34px;
-    font-size: 20px;
-    font-weight: 600;
+    bottom: 2px;
+    left: 40px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+}   
+
+/* list song */
+
+.list{
+    margin: 30px;
+}
+.text-note-list{
+    color: #abb3b2 !important;
+    font-size: 14px;
+    margin: 0;
 }
 
+.note-item{
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+    border-bottom: 1px solid rgba(230, 230, 230, 0.3);
+    padding: 20px 0 10px 0;
+}
 
+.list-item{
+    display: flex;
+    color: #fff;
+    padding: 20px 0 0 0;
+    align-items: center;
+}
 
+.list__id{
+    padding: 0 0 0 15px;
+}
+
+.list__id>p{
+    margin: 0;
+    font-size: 15px;
+}
+
+.list__title{
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    width: 45%;
+}
+
+.list__title-avatar{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.list__title-name-song{
+    display: grid;
+    padding-left:  15px;
+    width: 100%;
+    height: 40px;
+}
+
+.list__title-link-song{
+    color: #fff;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 18px;
+    line-height: 22px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.list__title-link-song:hover, 
+.list__title-link-singer:hover, 
+.list__album-name:hover{
+    color: #fff;
+}
+
+.list__title-link-song>span:hover,
+.list__title-link-singer>span:hover,
+.list__album-name>span:hover{
+    text-decoration: underline;
+    color: #fff;
+}
+
+.list__title-link-singer{
+    text-decoration: none;
+    color: #abb3b2;
+    font-size: 15px;
+    text-transform: capitalize;
+    line-height: 22px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.list__album{
+    width: 25%;
+}
+
+.list__album-name{
+    text-decoration: none;
+    color: #abb3b2;
+    font-size: 14px;
+    text-transform: capitalize;
+    margin: 12px 0;
+    line-height: 16px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.list__dateAdd{
+    width: 25%;
+    padding: 0 10px;
+}
+
+.list__dateAdd-date{
+    margin: 12px 0;
+    color: #abb3b2;
+    font-size: 14px;
+}
+
+.list__time{
+    width: 5%;
+}
+
+.list__time-time-song{
+    margin: 12px 0;
+    color: #abb3b2;
+    font-size: 14px;
+}
+
+.see-more > a{
+    color: #b8b8b8;
+    padding: 30px 45px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.see-more > a:hover{
+    color: #fff;
+}
 
 /* responsive */
 
