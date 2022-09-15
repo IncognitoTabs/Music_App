@@ -198,6 +198,9 @@
         </div>
         <div class="play-music">
             <div class="play-lists">
+                <div class="shuffle-music">
+                    <i class="fa-solid fa-shuffle"></i>
+                </div>
                 <div class="back-music">
                     <i class="fa-solid fa-backward-step"></i>
                 </div>
@@ -208,11 +211,14 @@
                 <div class="next-music">
                     <i class="fa-solid fa-forward-step"></i>
                 </div>
+                <div class="repeat-music">
+                    <i class="fa-solid fa-repeat"></i>
+                </div>
             </div>
             <div class="folder-music">
                 <div class="now-time"><span>1:20</span></div>
                 <div class="play-input">
-                    <input type="range" value="100" step="5" class="play-change">
+                    <input type="range" value="300" step="1" class="play-change">
                 </div>
                 <div class="final-time"><span>4:10</span></div>
             </div>
@@ -221,6 +227,7 @@
         <!-- change volume -->
         <div class="volume-music">
             <i class="bi bi-volume-down-fill"></i>
+            <i class="fa-solid fa-volume-xmark none-btn"></i>
             <input type="range" value="100" step="5" class="volume-change">
         </div>
     </div>
