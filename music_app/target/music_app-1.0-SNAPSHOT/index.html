@@ -29,17 +29,17 @@
                     </div>
                     <!-- Login, register -->
                     <!-- thêm class none btn để ẩn btn login vs register khi đã login -->
-                    <form class="d-flex login-btn none-btn">
-                        <a href="./login.html" class="btn" type="submit">Login</a>
-                        <a href="./register.html" class="btn" type="submit">Register</a>
+                    <form class="d-flex login-btn ">
+                        <a href="./pages/login.html" class="btn" type="submit">Login</a>
+                        <a href="./pages/register.html" class="btn" type="submit">Register</a>
                     </form>
-                    <div class="dropdown">
+                    <div class="dropdown none-btn">
                         <button class="btn btn-secondary dropdown-toggle border-radius" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            User name
+                                data-bs-toggle="dropdown" aria-expanded="false" name="show_name">
+                            ${show_name}
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                            <li><a class="dropdown-item" href="./index.html">Log out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                         <div class="row">
                             <!-- music item hiển thị 6 mục trên 1 hàng-->
                             <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="#" class="content-items">
+                                <a href="./pages/music-info.html" class="content-items">
                                     <div class="img-size">
                                         <img src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
                                             alt="">
@@ -105,7 +105,7 @@
     <div class="footer">
         <!-- info song -->
         <div class="info-music">
-            <a href="#" class="info-form">
+            <a href="./pages/music-info.html" class="info-form">
                 <img src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
                     alt="">
                 <div class=" info-form__name">

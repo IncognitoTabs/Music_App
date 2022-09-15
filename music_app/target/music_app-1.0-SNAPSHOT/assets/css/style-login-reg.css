@@ -45,6 +45,7 @@
 .btn:hover{
     cursor: pointer;
     opacity: 0.8;
+    border: 2px solid #000;
 }
 
 .btn--fb{
@@ -201,11 +202,17 @@
 }
 
 .btn--signUpFor{
-    color: #858585;
     font-size: 15px;
     text-transform: uppercase;
     font-weight: 600;
+}
 
+.btn--signUpFor>a{
+    width: 100%;
+    text-decoration: none;
+    color: #858585;
+    padding: 12px 20px;
+    display: block;
 }
 
 p.login{
