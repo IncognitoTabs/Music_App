@@ -196,6 +196,10 @@
 }
 /* info */
 
+.info-music, .volume-music {
+    width: 190px;
+}
+
 .info-form {
     display: flex;
     margin: 15px;
