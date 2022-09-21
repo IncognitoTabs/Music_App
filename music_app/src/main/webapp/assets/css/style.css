@@ -461,11 +461,12 @@
     width: 100%;
     height: 340px;
     position: relative;
+    overflow: hidden;
 }
 
 .header-info__img{
     width: 100%;
-    height: 100%;
+    height: 600px;
     object-fit: cover;
     position: relative;
 }
@@ -489,7 +490,6 @@
 }   
 
 /* list song */
-
 .list{
     margin: 30px;
 }
@@ -501,26 +501,75 @@
 
 .note-item{
     display: flex;
-    padding: 20px 0;
     align-items: center;
     border-bottom: 1px solid rgba(230, 230, 230, 0.3);
     padding: 20px 0 10px 0;
+    margin-bottom: 20px;
 }
 
 .list-item{
     display: flex;
     color: #fff;
-    padding: 20px 0 0 0;
     align-items: center;
+    padding: 6px 0;
 }
 
-.list__id{
+.list-item:hover {
+    border-radius: 3px;
+    background-color: rgba(90, 90, 90, 0.35);
+}
+
+.list-item.active{
+    border-radius: 3px;
+    background-color: rgba(90, 90, 90, 0.6);
+}
+
+.list-item.active .list-play-music{
+    display: none;
+}
+
+.list-item.active .list-pause-music{
+    display: block;
+}
+
+.list__id,.list__icon-music{
     padding: 0 0 0 15px;
+}
+
+.list__id .list-play-music, .list__id .list-pause-music{
+    font-size: 13px;
+    display: none;
 }
 
 .list__id>p{
     margin: 0;
     font-size: 15px;
+}
+
+.list-item.active .list__id>p{
+    display: none;
+    margin: 0;
+    font-size: 15px;
+}
+
+.list-item:hover .list-play-music{
+    display: block;
+}
+
+.list-item:hover.active .list-play-music{
+    display: none;
+}
+
+.list-item:hover .list-pause-music{
+    display: none;
+}
+
+.list-item:hover.active .list-pause-music{
+    display: block;
+}
+
+.list-item:hover .list__id > p{
+    display: none;
 }
 
 .list__title{
@@ -544,12 +593,12 @@
 }
 
 .list__title-link-song{
+    display: inline-block;
     color: #fff;
     text-decoration: none;
     text-transform: capitalize;
     font-size: 18px;
-    line-height: 22px;
-    display: -webkit-box;
+    line-height: 18px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
@@ -569,12 +618,12 @@
 }
 
 .list__title-link-singer{
+    display: inline-block;
     text-decoration: none;
     color: #abb3b2;
     font-size: 15px;
     text-transform: capitalize;
-    line-height: 22px;
-    display: -webkit-box;
+    line-height: 15px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
@@ -585,13 +634,13 @@
 }
 
 .list__album-name{
+    display: inline-block;
     text-decoration: none;
     color: #abb3b2;
     font-size: 14px;
     text-transform: capitalize;
     margin: 12px 0;
-    line-height: 16px;
-    display: -webkit-box;
+    line-height: 14px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
