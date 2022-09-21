@@ -242,7 +242,8 @@
 /* play music */
 
 .play-music {
-    width: 30%;
+    max-width: 650px;
+    width: 100%;
     margin: 15px 0;
 }
 
@@ -257,13 +258,18 @@
     color: #989898;
 }
 
-.back-music {
+.back-music, .next-music, .shuffle-music, .repeat-music {
     margin-top: 7px;
 }
 
-.next-music {
-    margin-top: 7px;
+.back-music {
+    margin-left: 60px;
 }
+
+.next-music {
+    margin-right: 60px;
+}
+
 
 .control-music {
     margin: 0 15%;
@@ -295,7 +301,7 @@
 }
 
 .play-input {
-    width: 300px;
+    width: 500px;
     margin: -2px 14px;
 }
 
@@ -325,6 +331,18 @@
 .volume-change {
     width: 93px;
     height: 4px;
+    background-color: #989898;
+}
+
+.icon-download::before {
+    font-size: 20px;
+    padding: 5px 15px;
+}
+
+.volume-music span {
+    border-left: 2px solid;
+    height: 20px;
+    margin-left: 5px;
     background-color: #989898;
 }
 
