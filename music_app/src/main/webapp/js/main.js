@@ -83,42 +83,7 @@ const songList = [
 
 const songIdList = document.getElementById("song-list")
 
-// window.addEventListener("DOMContentLoaded", async() => {
-    
-//     const songListId = songList.map(song => `
-//     <div class="list-item">
-//     <!-- list item -->
-//     <div class="list__id ">
-//     <p>1</p>
-//         <i class="fa-solid fa-play list-play-music"></i>
-//         <i class="fa-solid fa-pause list-pause-music"></i>
-//     </div>
 
-//     <div class="list__title">
-//         <img src="../image/den1.jpg" alt="" class="list__title-avatar">
-//         <div class="list__title-name-song">
-//         <div class="list__title-song">
-//             <a href="" class="list__title-link-song"><span>${song.name}</span> </a>
-//         </div>
-//         <div class="list__title-singer">
-//             <a href="" class="list__title-link-singer"><span>${song.singer}</span></a>
-//         </div>
-//         </div>
-//     </div>
-//     <div class="list__album">
-//         <a href="" class="list__album-name"><span>${song.album}</span></a>
-//     </div>
-//     <div class="list__dateAdd">
-//         <p class="list__dateAdd-date">${song.dateAdded}</p>
-//     </div>
-//     <div class="list__time">
-//         <p class="list__time-time-song">${song.duration}</p>
-//     </div>
-// </div>
-//     `).join('')
-
-//     songElementList.innerHTML = songListId
-// })
 
 const btnSeeMore = document.querySelector('.btn-see-more')
 
@@ -163,7 +128,8 @@ function truncate(text, number){
 }
 
 window.addEventListener('DOMContentLoaded', function(){
-    const songListElement = songList.slice(0, 5).map((song, index) => `<div class="list-item" data-id="${index}">
+    const songListElement = songList.slice(0, 5).map((song, index) => 
+    `<div class="list-item" data-id="${index}">
     <!-- list item -->
     <div class="list__id ">
         <p>1</p>
@@ -201,7 +167,8 @@ window.addEventListener('DOMContentLoaded', function(){
 if(btnSeeMore){
     btnSeeMore.addEventListener('click', function(e){
         const limitSong = btnSeeMore.textContent === 'SEE MORE' ? 100 : 5
-        const songListElement = songList.slice(0 , limitSong).map((song, index) => `<div class="list-item" data-id="${index}">
+        const songListElement = songList.slice(0 , limitSong).map((song, index) => 
+        `<div class="list-item" data-id="${index}">
     <!-- list item -->
     <div class="list__id ">
         <p>1</p>
@@ -221,10 +188,10 @@ if(btnSeeMore){
         </div>
     </div>
     <div class="list__album">
-        <a href="" class="list__album-name"><span>${song.dateAdded}</span></a>
+        <a href="" class="list__album-name"><span>${song.album}</span></a>
     </div>
     <div class="list__dateAdd">
-        <p class="list__dateAdd-date">6 phút trước</p>
+        <p class="list__dateAdd-date">${song.dateAdded}</p>
     </div>
     <div class="list__time">
         <p class="list__time-time-song">${song.duration}</p>
