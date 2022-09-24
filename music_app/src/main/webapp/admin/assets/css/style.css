@@ -5,6 +5,10 @@ body {
     background-color: #000;
     
 }
+.btnSongNumber{
+    background-color: #24ca0a;
+    --bs-btn-font-size: 0.9rem;
+}
 .btnUpdate{
     --bs-btn-font-size: 0.83rem;
 }
