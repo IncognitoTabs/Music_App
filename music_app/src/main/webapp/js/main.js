@@ -32,7 +32,7 @@ const songList = [
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "9 day ago",
         duration: 3
     },
     {
@@ -46,34 +46,34 @@ const songList = [
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "5 day ago",
         duration: 3
     },
     {
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "4 day ago",
         duration: 3
     },
     {
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "1 day ago",
         duration: 3
     },
     {
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "2 day ago",
         duration: 3
     },
     {
         name: "Dau nho",
         singer: "Den Vau",
-        album: "Lon xon",
+        album: "adsada",
         dateAdded: "6 day ago",
         duration: 3
     },

@@ -13,12 +13,18 @@
     position: fixed;
     right: 0;
 }
+
+
 /* container */
+
 
 .folder-list {
     margin-top: 73px;
 }
 
+.menu-bar{
+    padding-left: 40px;
+}
 .menu-bar {
     height: 100vh;
     background-color: #000000;
@@ -31,17 +37,15 @@
     z-index: 2;
 }
 
-/* .list-music-item {
-    height: auto;
-} */
-
 .menu-bar li:hover {
-    color: #333;
+    color: #4e4e4e;
 }
-
 
 .title-app {
     font-size: 2rem;
+}
+
+.title-app {
     color: #fff;
     font-weight: 700;
     text-align: center;
@@ -60,19 +64,10 @@
 
 .nav-item a i {
     margin-right: 5%;
-    margin-top: 12px;
-}
-
-.nav-item .margin-top {
-    margin-top: 8px;
 }
 
 .search-bar {
     height: 10vh;
-}
-
-.d-flex button:first-child {
-    margin-right: 3%;
 }
 
 .title-items {
@@ -117,12 +112,6 @@
 
 .folder-list form {
     margin-right: 2%;
-}
-
-
-
-.list-items:last-child {
-    margin-bottom: 100px;
 }
 
 .content-items {
@@ -257,8 +246,8 @@
 }
 
 .play-lists i {
-    font-size: 1.6rem;
-    line-height: 1.6rem;
+    font-size: 20px;
+    line-height: 20px;
     color: #989898;
 }
 
@@ -267,22 +256,25 @@
 }
 
 .back-music {
-    margin-left: 60px;
+    margin-left: 40px;
 }
 
 .next-music {
-    margin-right: 60px;
+    margin-right: 40px;
 }
 
 .next-music-icon:hover, 
 .back-music-icon:hover, 
 .shuffle-music-icon:hover,
-.repeat-music-icon:hover{
+.repeat-music-icon:hover,
+.volume-music-icon:hover,
+.icon-download:hover
+{
     color: #fff;
 }
 
 .control-music {
-    margin: 0 15%;
+    margin: 0 10%;
     background-color: #fff;
     padding: 5px 10px; 
     border-radius: 50%;
