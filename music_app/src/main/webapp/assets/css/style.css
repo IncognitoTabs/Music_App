@@ -270,6 +270,12 @@
     margin-right: 60px;
 }
 
+.next-music-icon:hover, 
+.back-music-icon:hover, 
+.shuffle-music-icon:hover,
+.repeat-music-icon:hover{
+    color: #fff;
+}
 
 .control-music {
     margin: 0 15%;
