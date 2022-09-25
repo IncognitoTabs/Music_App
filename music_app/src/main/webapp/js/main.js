@@ -32,7 +32,7 @@ const songList = [
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "9 day ago",
         duration: 3
     },
     {
@@ -46,34 +46,34 @@ const songList = [
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "5 day ago",
         duration: 3
     },
     {
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "4 day ago",
         duration: 3
     },
     {
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "1 day ago",
         duration: 3
     },
     {
         name: "Dau nho",
         singer: "Den Vau",
         album: "Lon xon",
-        dateAdded: "6 day ago",
+        dateAdded: "2 day ago",
         duration: 3
     },
     {
         name: "Dau nho",
         singer: "Den Vau",
-        album: "Lon xon",
+        album: "adsada",
         dateAdded: "6 day ago",
         duration: 3
     },
@@ -291,6 +291,33 @@ btnPrev.addEventListener('click', () => {
     resetClassSongItem()
     updateSong(songNext)
 })
+
+function edit_user(){
+    const fullname = document.getElementById('myName');
+    const pass = document.getElementById('myPassword');
+    const unhiden = document.getElementById('unhiden');
+    const edit = document.getElementById('edit');
+    const save = document.getElementById('save');
+
+    fullname.disabled = false;
+    pass.disabled = false;
+    edit.className = 'none-btn';
+    save.classList.remove('none-btn');
+    unhiden.classList.remove('none-btn');
+}
+
+function save_user(){
+    const fullname = document.getElementById('myName');
+    const pass = document.getElementById('myPassword');
+    const unhiden = document.getElementById('unhiden');
+    const edit = document.getElementById('edit');
+    const save = document.getElementById('save');
+    fullname.disabled = true;
+    pass.disabled = true;
+    save.className = 'none-btn';
+    unhiden.className = 'none-btn';
+    edit.classList.remove('none-btn');
+}
 
 
 
