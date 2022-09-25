@@ -292,6 +292,33 @@ btnPrev.addEventListener('click', () => {
     updateSong(songNext)
 })
 
+function edit_user(){
+    const fullname = document.getElementById('myName');
+    const pass = document.getElementById('myPassword');
+    const unhiden = document.getElementById('unhiden');
+    const edit = document.getElementById('edit');
+    const save = document.getElementById('save');
+
+    fullname.disabled = false;
+    pass.disabled = false;
+    edit.className = 'none-btn';
+    save.classList.remove('none-btn');
+    unhiden.classList.remove('none-btn');
+}
+
+function save_user(){
+    const fullname = document.getElementById('myName');
+    const pass = document.getElementById('myPassword');
+    const unhiden = document.getElementById('unhiden');
+    const edit = document.getElementById('edit');
+    const save = document.getElementById('save');
+    fullname.disabled = true;
+    pass.disabled = true;
+    save.className = 'none-btn';
+    unhiden.className = 'none-btn';
+    edit.classList.remove('none-btn');
+}
+
 
 
 
