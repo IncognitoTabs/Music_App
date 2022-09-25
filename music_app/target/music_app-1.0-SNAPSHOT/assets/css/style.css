@@ -196,6 +196,10 @@
 }
 /* info */
 
+.info-music, .volume-music {
+    width: 190px;
+}
+
 .info-form {
     display: flex;
     margin: 15px;
@@ -242,7 +246,8 @@
 /* play music */
 
 .play-music {
-    width: 30%;
+    max-width: 650px;
+    width: 100%;
     margin: 15px 0;
 }
 
@@ -257,13 +262,18 @@
     color: #989898;
 }
 
-.back-music {
+.back-music, .next-music, .shuffle-music, .repeat-music {
     margin-top: 7px;
 }
 
-.next-music {
-    margin-top: 7px;
+.back-music {
+    margin-left: 60px;
 }
+
+.next-music {
+    margin-right: 60px;
+}
+
 
 .control-music {
     margin: 0 15%;
@@ -295,7 +305,7 @@
 }
 
 .play-input {
-    width: 300px;
+    width: 500px;
     margin: -2px 14px;
 }
 
@@ -325,6 +335,18 @@
 .volume-change {
     width: 93px;
     height: 4px;
+    background-color: #989898;
+}
+
+.icon-download::before {
+    font-size: 20px;
+    padding: 5px 15px;
+}
+
+.volume-music span {
+    border-left: 2px solid;
+    height: 20px;
+    margin-left: 5px;
     background-color: #989898;
 }
 
@@ -433,9 +455,10 @@
 /* music info */
 .container__info{
     width: calc(100% - calc(100%/6));
-    height: 1000px;
+    height: auto;
     margin-left: calc(100%/6);
     margin-top: 73px;
+    margin-bottom: 90px;
     padding: 0;
 }
 
@@ -443,11 +466,12 @@
     width: 100%;
     height: 340px;
     position: relative;
+    overflow: hidden;
 }
 
 .header-info__img{
     width: 100%;
-    height: 100%;
+    height: 600px;
     object-fit: cover;
     position: relative;
 }
@@ -471,10 +495,15 @@
 }   
 
 /* list song */
-
-.list{
+.container__info-list{
     margin: 30px;
 }
+
+.btn-see-more{
+    background: #fff;
+    color: #000;
+}
+
 .text-note-list{
     color: #abb3b2 !important;
     font-size: 14px;
@@ -483,26 +512,76 @@
 
 .note-item{
     display: flex;
-    padding: 20px 0;
     align-items: center;
     border-bottom: 1px solid rgba(230, 230, 230, 0.3);
     padding: 20px 0 10px 0;
+    margin-bottom: 20px;
 }
 
 .list-item{
     display: flex;
     color: #fff;
-    padding: 20px 0 0 0;
     align-items: center;
+    padding: 4px 0;
+    margin: 4px 0;
 }
 
-.list__id{
+.list-item:hover {
+    border-radius: 3px;
+    background-color: rgba(90, 90, 90, 0.35);
+}
+
+.list-item.active{
+    border-radius: 3px;
+    background-color: rgba(90, 90, 90, 0.6);
+}
+
+.list-item.active .list-play-music{
+    display: none;
+}
+
+.list-item.active .list-pause-music{
+    display: block;
+}
+
+.list__id,.list__icon-music{
     padding: 0 0 0 15px;
+}
+
+.list__id .list-play-music, .list__id .list-pause-music{
+    font-size: 13px;
+    display: none;
 }
 
 .list__id>p{
     margin: 0;
     font-size: 15px;
+}
+
+.list-item.active .list__id>p{
+    display: none;
+    margin: 0;
+    font-size: 15px;
+}
+
+.list-item:hover .list-play-music{
+    display: block;
+}
+
+.list-item:hover.active .list-play-music{
+    display: none;
+}
+
+.list-item:hover .list-pause-music{
+    display: none;
+}
+
+.list-item:hover.active .list-pause-music{
+    display: block;
+}
+
+.list-item:hover .list__id > p{
+    display: none;
 }
 
 .list__title{
@@ -526,12 +605,12 @@
 }
 
 .list__title-link-song{
+    display: inline-block;
     color: #fff;
     text-decoration: none;
     text-transform: capitalize;
     font-size: 18px;
-    line-height: 22px;
-    display: -webkit-box;
+    line-height: 18px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
@@ -551,12 +630,12 @@
 }
 
 .list__title-link-singer{
+    display: inline-block;
     text-decoration: none;
     color: #abb3b2;
     font-size: 15px;
     text-transform: capitalize;
-    line-height: 22px;
-    display: -webkit-box;
+    line-height: 15px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
@@ -567,13 +646,13 @@
 }
 
 .list__album-name{
+    display: inline-block;
     text-decoration: none;
     color: #abb3b2;
     font-size: 14px;
     text-transform: capitalize;
     margin: 12px 0;
-    line-height: 16px;
-    display: -webkit-box;
+    line-height: 14px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
@@ -599,16 +678,20 @@
     color: #abb3b2;
     font-size: 14px;
 }
-
-.see-more > a{
-    color: #b8b8b8;
-    padding: 30px 45px;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
+.see-more{
+    margin: 20px 0;
 }
 
-.see-more > a:hover{
+.btn-see-more{
+    color: #b2b2b2;
+    background: transparent;
+    border: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-see-more:hover{
     color: #fff;
 }
 
