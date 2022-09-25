@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="400727485680-va07ln04qr2fbg5ng3db8gsdveh4v806.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Login - Music</title>
 
     <link rel="stylesheet" href="../assets/css/style-login-reg.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto:wght@300;400;500;700&display=swap">
 </head>
 
 <body>
@@ -27,26 +28,42 @@
         <div class="container">
             <p class="container__header">To continue, log in to Music.</p>
             <div class="container__login-with">
-
                     <!-- button -->
-                    <button class="btn btn--fb">
-                        <p class="">
-                        <i class="icon fa-brands fa-square-facebook"></i>
-                            Continue with Facebook
-                        </p>
-                    </button>
-                    <button class="btn btn--gg">
-                        <p class="">
-                            <span class="icon-gg"></span>
-                            Continue with google
-                        </p>
-                    </button>
-                    <button class="btn btn--phone">
-                        <p class="">
-                            <i class="icon fa-solid fa-square-phone"></i>
-                            Continue with Phone Number
-                        </p>
-                    </button>
+                <div class="fb-login-button" 
+	            data-width="" data-size="large" 
+	            data-button-type="continue_with" 
+	            data-layout="rounded" 
+	            data-auto-logout-link="false" 
+	            data-use-continue-as="false"
+	            data-onlogin="checkLoginState();">    
+	        </div>
+                <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+                    <img id="myImg"><br>
+                    <p id="name"></p>
+                    <div id="status">
+                </div>
+    <script type="text/javascript">
+        function onSignIn(googleUser) {
+        // window.location.href='success.jsp';
+        var profile = googleUser.getBasicProfile();
+        var imagurl=profile.getImageUrl();
+        var name=profile.getName();
+        var email=profile.getEmail();
+        document.getElementById("myImg").src = imagurl;
+        document.getElementById("name").innerHTML = name;
+        document.getElementById("myP").style.visibility = "hidden";
+        document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=success.jsp?                  
+        email='+email+'&name='+name+'/>Continue with Google login</a></p>'
+      }
+    </script>
+    <!-- google logout -->
+<!--   <button onclick="myFunction()">Sign Out</button>
+   <script>
+      function myFunction() {
+      gapi.auth2.getAuthInstance().disconnect();
+      location.reload();
+   }
+   </script>-->
             </div>
 
             <div class="line">
@@ -56,7 +73,7 @@
             </div>
 
             <!-- login with account -->
-            <form action="" class="form-login">
+            <form action="" method="GET" class="form-login">
                 <!-- form login -->
                 <div class="user-address">
                     <p class="form__user">Email address or username</p>
@@ -69,10 +86,8 @@
                 </div>
                 <!-- forgot password-->
                 <a href="" class="forgot-password">Forgot your password?</a>
-            </form>
-
-
-            <div class="zxc">
+                
+                 <div class="zxc">
                 <!-- remember password-->
                 <div class="remember">
                     <input type="checkbox" class="remember__checkbox">
@@ -80,7 +95,8 @@
                 </div>
                 <button class="btn btn--login">Login</button>
             </div>
-
+            </form>
+            
             <hr class="last-line">
 
             <p class="asd">Don't have an account?</p>
@@ -91,6 +107,54 @@
             </div>
         </div>
     </div>
+
+
+
+<script>
+
+function checkLoginState() {
+	 FB.getLoginStatus(function(response) {
+	 statusChangeCallback(response);
+	 });
+	 }
+	 
+function statusChangeCallback(response) {
+	 console.log('statusChangeCallback');
+	 console.log(response);
+	 console.log(response.authResponse.accessToken);
+	 //alert(response.authResponse.accessToken);
+	 FB.login((response)=>{
+             if (response.status === 'connected') {
+	 window.location.href='./ConfirmUser.jsp?access_token='+response.authResponse.accessToken; 
+	 } else {
+	 // The person is not logged into your app or we are unable to tell.
+	 document.getElementById('status').innerHTML = 'Please log ' +
+	 'into this app.';
+	 }
+         },{scope: 'public_profile,email'});
+}
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1264144231018304',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v15.0'
+    });
+    FB.getLoginStatus(function(response) {
+  	  statusChangeCallback(response);
+  	  });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+ 
+</script>
+
 </body>
 
 </html>

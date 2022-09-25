@@ -13,12 +13,18 @@
     position: fixed;
     right: 0;
 }
+
+
 /* container */
+
 
 .folder-list {
     margin-top: 73px;
 }
 
+.menu-bar{
+    padding-left: 40px;
+}
 .menu-bar {
     height: 100vh;
     background-color: #000000;
@@ -31,17 +37,15 @@
     z-index: 2;
 }
 
-/* .list-music-item {
-    height: auto;
-} */
-
 .menu-bar li:hover {
-    color: #333;
+    color: #4e4e4e;
 }
-
 
 .title-app {
     font-size: 2rem;
+}
+
+.title-app {
     color: #fff;
     font-weight: 700;
     text-align: center;
@@ -60,19 +64,10 @@
 
 .nav-item a i {
     margin-right: 5%;
-    margin-top: 12px;
-}
-
-.nav-item .margin-top {
-    margin-top: 8px;
 }
 
 .search-bar {
     height: 10vh;
-}
-
-.d-flex button:first-child {
-    margin-right: 3%;
 }
 
 .title-items {
@@ -117,12 +112,6 @@
 
 .folder-list form {
     margin-right: 2%;
-}
-
-
-
-.list-items:last-child {
-    margin-bottom: 100px;
 }
 
 .content-items {
@@ -196,6 +185,10 @@
 }
 /* info */
 
+.info-music, .volume-music {
+    width: 190px;
+}
+
 .info-form {
     display: flex;
     margin: 15px;
@@ -253,8 +246,8 @@
 }
 
 .play-lists i {
-    font-size: 1.6rem;
-    line-height: 1.6rem;
+    font-size: 20px;
+    line-height: 20px;
     color: #989898;
 }
 
@@ -272,7 +265,7 @@
 
 
 .control-music {
-    margin: 0 15%;
+    margin: 0 10%;
     background-color: #fff;
     padding: 5px 10px; 
     border-radius: 50%;
@@ -321,12 +314,20 @@
     margin-right: 15px;
 }
 
-.volume-music i {
+.volume-music #mute {
     font-size: 1.8rem;
     line-height: 1.8rem;
     color: #989898;
     margin-right: 5px;
 }
+
+.volume-music #unmute {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    color: #989898;
+    margin-right: 5px;
+}
+
 
 .volume-change {
     width: 93px;
@@ -451,9 +452,10 @@
 /* music info */
 .container__info{
     width: calc(100% - calc(100%/6));
-    height: 1000px;
+    height: auto;
     margin-left: calc(100%/6);
     margin-top: 73px;
+    margin-bottom: 90px;
     padding: 0;
 }
 
@@ -490,9 +492,15 @@
 }   
 
 /* list song */
-.list{
+.container__info-list{
     margin: 30px;
 }
+
+.btn-see-more{
+    background: #fff;
+    color: #000;
+}
+
 .text-note-list{
     color: #abb3b2 !important;
     font-size: 14px;
@@ -511,7 +519,8 @@
     display: flex;
     color: #fff;
     align-items: center;
-    padding: 6px 0;
+    padding: 4px 0;
+    margin: 4px 0;
 }
 
 .list-item:hover {
@@ -666,19 +675,42 @@
     color: #abb3b2;
     font-size: 14px;
 }
-
-.see-more > a{
-    color: #b8b8b8;
-    padding: 30px 45px;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
+.see-more{
+    margin: 20px 0;
 }
 
-.see-more > a:hover{
+.btn-see-more{
+    color: #b2b2b2;
+    background: transparent;
+    border: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-see-more:hover{
     color: #fff;
 }
 
+/* user */
+
+.user-info {
+    font-size: 1.2rem;
+    color: #fff;
+
+}
+
+.avata-user {
+    max-width: 150px;
+    width: 100%;
+    max-height: 200px;
+    height: 100%; 
+}
+
+.size-input-avata {
+    max-width: 150px;
+    width: 100%;
+}
 /* responsive */
 
 @media (max-width: 999px) {
