@@ -27,6 +27,7 @@
     display: inline-block;
 }
 .container__header{
+    width: 450px;
     margin: 30px 0 10px;
     font-size: 13px;
     font-weight: 600;
@@ -49,7 +50,7 @@
 }
 
 .btn--fb{
-    background-color: #3b5998;
+    background-color: rgba(9, 30, 66);
     color: #fff;
 }
 
