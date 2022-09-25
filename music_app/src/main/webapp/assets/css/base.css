@@ -29,6 +29,19 @@ a {
     display: none!important;
 }
 
+.display-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
 .border-radius {
     border-radius: 50px;
+}
+
+.center__ {
+    text-align: -webkit-center;
+}
+
+.float-right {
+    float: right;
 }
