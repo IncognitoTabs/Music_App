@@ -1,29 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-      <form method="POST" action="/music_app/Insert">
-         <table border="0">
+    <table border="1"  >
+       <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Picture</th>
+       </tr>
+       <c:forEach items="${singerList}" var="singer">
             <tr>
-               <td>id</td>
-               <td><input type="text" name="id" value="" /></td>
-            </tr>
-            <tr>
-               <td>Name</td>
-               <td><input type="text" name="name" value="" /></td>
-            </tr>
-            <tr>
-               <td colspan="2">                   
-                   <input type="submit" value="Submit" />
-                   <a href="productList">Cancel</a>
-               </td>
-            </tr>
-         </table>
-      </form>
+             <td>${singer.id}</td>
+             <td>${singer.name}</td>
+             <td><img src="getImageSinger.jsp?id=${singer.id}" width="100px" height="60px]"/></td>
+          </tr>
+       </c:forEach>
+    </table>
 </body>
 </html>
