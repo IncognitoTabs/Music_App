@@ -1,2 +1,10 @@
+com\javaServlet\InsertSinger.class
+com\javaFilter\JDBCFilter.class
+com\javaConnection\OracleConnection.class
+com\javaDTO\Singer.class
 com\oracle\music_app\login\FB_Profile.class
 com\oracle\music_app\model\User.class
+com\javaDao\SingerDAO.class
+com\javaDao\MyUtils.class
+com\javaConnection\ConnectionUtils.class
+com\javaServlet\Showsinger.class
