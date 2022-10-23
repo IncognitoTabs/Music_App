@@ -1,5 +1,6 @@
 package com.javaDao;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,13 +28,13 @@ public class SingerDAO {
 		}
 		return list;
 	}
-	public static void insertProduct(Connection conn, Singer singer) throws SQLException {
-		String sql = "Insert into singer(id_singer, name_singer) values (?,?)";
+	public static void insertProduct(Connection conn, Singer singer,InputStream is) throws SQLException {
+		String sql = "Insert into singer(name_singer,picture_singer) values (?,?)";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
-		pstm.setString(1, singer.getId());
-		pstm.setString(2, singer.getName());
+		pstm.setString(1, singer.getName());
+		pstm.setBlob(2, is);
 		pstm.executeUpdate();
 	}
 	
