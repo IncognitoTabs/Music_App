@@ -256,13 +256,22 @@
 }
 
 .back-music {
-    margin-left: 60px;
+    margin-left: 40px;
 }
 
 .next-music {
-    margin-right: 60px;
+    margin-right: 40px;
 }
 
+.next-music-icon:hover, 
+.back-music-icon:hover, 
+.shuffle-music-icon:hover,
+.repeat-music-icon:hover,
+.volume-music-icon:hover,
+.icon-download:hover
+{
+    color: #fff;
+}
 
 .control-music {
     margin: 0 10%;
