@@ -20,6 +20,11 @@ public class Singer {
 		this.name = name;
 
 	}
+	public Singer( String name) {
+		super();
+		this.name = name;
+
+	}
 	public String getId() {
 		return id;
 	}

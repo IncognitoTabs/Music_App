@@ -43,5 +43,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/ojdbc11"/>
+	<classpathentry kind="lib" path="D:/jakarta.servlet.jsp.jstl-2.0.0"/>
+	<classpathentry kind="lib" path="D:/jakarta.servlet.jsp.jstl-api-2.0.0"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
