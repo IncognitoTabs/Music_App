@@ -23,15 +23,13 @@
             rel="stylesheet">
     </head>
     <body>
-        <%String access_token=(String)request.getParameter("access_token");
+        <%  String access_token=(String)request.getParameter("access_token");
             FB_Profile profile=new FB_Profile();
             User user= profile.call_me(access_token);
-            %>
-<!--            Name : <%=user.getUser_name() %><br>
-            Email : <%=user.getEmail() %><br>
-            id : <%=user.getId() %><br>
-            Profile Picture : <%=user.getAvatar() %><br>
-            <img src="<%=user.getAvatar() %>"></img>-->
+            String name=(String)request.getParameter("name");
+            String email=(String)request.getParameter("email");
+            String imageurl=(String)request.getParameter("imagurl");            
+        %>
         <div class="signup">
             <div class="logo">
                 <p>
@@ -51,7 +49,7 @@
                             <input type="text" 
                                    placeholder="Enter your email." 
                                    class="form__input-user" 
-                                   value="<%=user.getEmail() %>"
+                                   value="<%=profile.isFB?user.getEmail():email %>"
                                    name="email" required>
                         </div>
 
@@ -60,7 +58,7 @@
                             <input type="text" 
                                    placeholder="Enter your email again." 
                                    class="form__input-email-again" 
-                                   value="<%=user.getEmail() %>"
+                                   value="<%=profile.isFB?user.getEmail():email %>"
                                    name="email_confirm" required>
                         </div>
 
@@ -74,7 +72,7 @@
                             <input type="text" 
                                    placeholder="Enter a profile name." 
                                    class="form__input-profile-name" 
-                                   value="<%=user.getUser_name() %>"
+                                   value="<%=profile.isFB?user.getFull_name():name %>"
                                    name="username" required>
                             <p class="helpText">This appears on your profile.</p>
                         </div>
