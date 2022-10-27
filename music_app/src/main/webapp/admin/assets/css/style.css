@@ -148,13 +148,16 @@ body {
 
 .content-items {
     background-color: #181818;
-    max-width: 270px;
+    max-width: 500px;
+    width: 250px;
     height: 100%;
 }
 
 .content-items .img-size {
-    height: 70%;
+    height:75%;
+    width: auto;
 }
+
 
 .content-items h5, .name-singer{
     margin-left: 10%;
@@ -355,6 +358,9 @@ body {
 }
 .navbar-nav {
     width: 200px;
+}
+.btn1{
+   background-color: #989898;
 }
 
 }

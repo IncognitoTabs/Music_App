@@ -15,7 +15,6 @@
    
 
     <title>Music</title>
-    
 </head>
 
 <body>
@@ -29,7 +28,26 @@
                         <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-left"></i></a>
                         <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-right"></i></a>
                     </div>
-                  
+                    <!-- Dropdown -->
+          
+                   <div class="dropdown">
+                       <button class="btn btn-secondary dropdown-toggle" type="button" 
+                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin 
+                        </button>
+                         
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                         
+                            <li><a class="dropdown-item" href="./AddMusic.html">Add Music</a></li>
+                            <li> <a class="dropdown-item" href="./AddAlbum.html">Add Album</a></li>
+                            <li> <a class="dropdown-item" href="./AddSingle.html">Add Singer</a></li>
+                            <li><a class="dropdown-item" href="#">Song Manager</a></li>
+                            <li> <a class="dropdown-item" href="#">Album Manager</a></li>
+                            <li> <a class="dropdown-item" href="#">Log Out</a></li>
+                          </ul>
+                        
+                        </div>
+                          
                     
                 </div>
             </nav>
@@ -109,42 +127,53 @@
                     <div class="list-items">
                         <!-- Name category vs see all music in category-->
                         <div class="title-items">
-                            <p>Add Singer</p>
+                            <p>My Album</p>
                           
-                            
                         </div>
-
-                        </div>
-                        <!-- name music -->
                         <div class="row">
-                            <div class="addmusic">
-                                <p style="color: white;" > Singer Name
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Input Singer name here!"  >
-                                       
-                                      </div>
-                                </p>
-                            </div>
-                           
-                            <!-- add file Singer  -->
-                            <p style="color: white;" >Choose Singer Picture 
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                      <input type="file" class="custom-file-input" id="inputGroupFile04">
-                                      <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                            <!-- music item -->
+                            <div class="col-12 col-sm-6 col-md-2 image">
+                                <a href="#" class="content-items">
+                                    <div class="img-size">
+                                        <img src="https://images.genius.com/b6c44f836516ce8f33d539e140300a55.1000x1000x1.jpg"
+                                            alt="">
                                     </div>
-                                  
-                                  </div>
-                            </p>
-                            <!--add music  -->
-                            <div class="addmusic">
-
-                                <button type="button" class="btn btn-success">Add Singer</button>
+                                    <h5>Album Nơi này có anh</h5>
+                                    <p class="name-singer">Sơn tùng MTP</p>
+                                </a>
                             </div>
-                            
-                        </div>
-                    </div>
-                   
+
+                            <!-- nút play -->
+                            <div class="img-play">
+                                <img src="./image/play.jpg" alt="">
+
+
+                            </div>
+                            <table class="table table-dark">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Music Name</th>
+                                 
+                                 
+                                    <th scope="col">Listens</th>
+                                    <th scope="col">Act</th>
+    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td >Cann't take my eyes  </td>   
+                              
+                                    <td>10000</td>
+                                    <td>10000</td>
+                                  
+                                  </tr>
+                             
+                                </tbody>
+                              </table>
+                 
                 </div>
             </div>
 
