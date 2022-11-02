@@ -29,7 +29,6 @@ public class ShowSinger extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		Connection conn = MyUtils.getStoredConnection(request);
-		PrintWriter printWriter= response.getWriter();
 		//String errorString = null;
 		List<Singer> list = null;
 		try {

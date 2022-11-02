@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Show Singer</title>
 </head>
 <body>
     <table border="1"  >
@@ -18,7 +18,7 @@
             <tr>
              <td>${singer.id}</td>
              <td>${singer.name}</td>
-             <td><img src="getImageSinger.jsp?id=${singer.id}" width="100px" height="60px]"/></td>
+             <td><img src="getImageSinger.jsp?id=${singer.id}" width="100px" height="60px"/></td>
           </tr>
        </c:forEach>
     </table>
