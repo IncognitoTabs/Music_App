@@ -3,6 +3,7 @@
     Created on : Sep 25, 2022, 4:38:31 PM
     Author     : hoang
 --%>
+<%@page import="com.oracle.music_app.login.GG_Profile"%>
 <%@page import="com.oracle.music_app.model.User" %>
 <%@page import="com.oracle.music_app.login.FB_Profile"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -15,7 +16,6 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <link rel="stylesheet" href="../assets/css/style-login-reg.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link
@@ -23,12 +23,15 @@
             rel="stylesheet">
     </head>
     <body>
-        <%  String access_token=(String)request.getParameter("access_token");
-            FB_Profile profile=new FB_Profile();
-            User user= profile.call_me(access_token);
-            String name=(String)request.getParameter("name");
-            String email=(String)request.getParameter("email");
-            String imageurl=(String)request.getParameter("imagurl");            
+        <%  
+            User user = new User(); 
+            String access_token=(String)request.getParameter("access_token");
+            if(access_token != null){
+                user = new FB_Profile().call_me(access_token);
+            }else{
+                String code = request.getParameter("code");
+                user = new GG_Profile().call_me(code);
+            }
         %>
         <div class="signup">
             <div class="logo">
@@ -49,7 +52,7 @@
                             <input type="text" 
                                    placeholder="Enter your email." 
                                    class="form__input-user" 
-                                   value="<%=profile.isFB?user.getEmail():email %>"
+                                   value="<%=user.getEmail() %>"
                                    name="email" required>
                         </div>
 
@@ -58,7 +61,7 @@
                             <input type="text" 
                                    placeholder="Enter your email again." 
                                    class="form__input-email-again" 
-                                   value="<%=profile.isFB?user.getEmail():email %>"
+                                   value="<%=user.getEmail()%>"
                                    name="email_confirm" required>
                         </div>
 
@@ -72,7 +75,7 @@
                             <input type="text" 
                                    placeholder="Enter a profile name." 
                                    class="form__input-profile-name" 
-                                   value="<%=profile.isFB?user.getFull_name():name %>"
+                                   value="<%=user.getFull_name()%>"
                                    name="username" required>
                             <p class="helpText">This appears on your profile.</p>
                         </div>
