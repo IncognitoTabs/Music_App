@@ -44,7 +44,7 @@
                             <p>Music</p>
                         </div>
                     </div>
-                    <!-- nemu barr -->
+                    <!-- nemu bar -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="./home_admin.html">
@@ -61,7 +61,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./pages/music-category.html">
                                 <i class="bi bi-music-note-list margin-top"></i>
-                                My Album
+                             My Album
                             </a>
                         </li>
                         <li class="nav-item">
@@ -107,40 +107,46 @@
                 <div class="folder-list col-10">
 
                     <div class="list-items">
-                        <!-- Name category vs see all music in category-->
+                        <!-- Name category vs see all music in ccategory-->
                         <div class="title-items">
-                            <p>Add Singer</p>
+                            <p>Singer Manager</p>
                           
                             
                         </div>
 
                         </div>
-                        <!-- name music -->
-                        <div class="row">
-                            <div class="addmusic">
-                                <p style="color: white;" > Singer Name
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Input Singer name here!"  >
-                                       
-                                      </div>
-                                </p>
-                            </div>
-                           
-                            <!-- add file Singer  -->
-                            <p style="color: white;" >Choose Singer Picture 
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                      <input type="file" class="custom-file-input" id="inputGroupFile04">
-                                      <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                                    </div>
-                                  
-                                  </div>
-                            </p>
-                            <!--add music  -->
-                            <div class="addmusic">
+                        <table class="table table-dark">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Singer Name</th>
+                               
+                                <th scope="col">Act</th>
 
-                                <button type="button" class="btn btn-success">Add Singer</button>
-                            </div>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td >Sơn Tùng MTP  </td>   
+                           
+                                <td>
+                                    <a href="./AddSingle.html" 
+                                    class="btn btn-primary btn-lg active btnUpdate" role="button" aria-pressed="true">Update</a>
+                                    <button type="button" class="btn btn-danger">Danger</button>  </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>
+                                    <a href="./AddSingle.html" 
+                                    class="btn btn-primary btn-lg active btnUpdate" role="button" aria-pressed="true">Update</a>
+                                    <button type="button" class="btn btn-danger">Danger</button>  </td>
+                              
+                              </tr>
+                         
+                            </tbody>
+                          </table>
                             
                         </div>
                     </div>
