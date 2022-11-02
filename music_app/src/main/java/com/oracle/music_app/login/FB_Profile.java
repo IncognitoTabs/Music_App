@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import com.oracle.music_app.model.User;
 
 public class FB_Profile {
-    public boolean isFB= false;
+    public static boolean isFB = false;
 	public User call_me(String access_token) throws Exception {
 	     String url = "https://graph.facebook.com/v2.12/me?fields=id,name,picture,email&access_token="+access_token;
 	     URL obj = new URL(url);
@@ -33,7 +33,7 @@ public class FB_Profile {
 	     System.out.println(response);
 	     User user=new User();
 	     JSONObject myResponse = new JSONObject(response.toString());
-	     user.setUser_name(myResponse.getString("name"));
+	     user.setFull_name(myResponse.getString("name"));
 	     user.setId(myResponse.getString("id"));
 	     user.setEmail(myResponse.getString("email"));
 	     JSONObject picture_reponse=myResponse.getJSONObject("picture");
