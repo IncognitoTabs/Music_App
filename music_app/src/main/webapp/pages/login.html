@@ -27,7 +27,7 @@
         <!-- login with -->
         <div class="container">
             <p class="container__header">To continue, log in to Music.</p>
-            <div class="container__login-with">
+            <div class="container__login-with" id="btns">
                     <!-- button -->
                 <div class="fb-login-button" 
 	            data-width="" data-size="large" 
@@ -37,25 +37,8 @@
 	            data-use-continue-as="false"
 	            data-onlogin="checkLoginState();">    
 	        </div>
-                <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
-                    <img id="myImg"><br>
-                    <p id="name"></p>
-                    <div id="status">
-                </div>
-    <script type="text/javascript">
-        function onSignIn(googleUser) {
-        // window.location.href='success.jsp';
-        var profile = googleUser.getBasicProfile();
-        var imagurl=profile.getImageUrl();
-        var name=profile.getName();
-        var email=profile.getEmail();
-        document.getElementById("myImg").src = imagurl;
-        document.getElementById("name").innerHTML = name;
-        document.getElementById("myP").style.visibility = "hidden";
-        document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=success.jsp?                  
-        email='+email+'&name='+name+'/>Continue with Google login</a></p>'
-      }
-    </script>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
     <!-- google logout -->
 <!--   <button onclick="myFunction()">Sign Out</button>
    <script>
@@ -64,9 +47,8 @@
       location.reload();
    }
    </script>-->
-            </div>
-
-            <div class="line">
+            
+            <div class="line" id="sperator">
                 <hr>
                 <p>OR</p>
                 <hr>
@@ -108,7 +90,17 @@
         </div>
     </div>
 
-
+<script type="text/javascript">
+        function onSignIn(googleUser) {
+        window.location.href='ConfirmUser.jsp';
+        var profile = googleUser.getBasicProfile();
+        var imagurl=profile.getImageUrl();
+        var name=profile.getName();
+        var email=profile.getEmail();
+//        document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=success.jsp?                  
+//        email='+email+'&name='+name+'/>Continue with Google login</a></p>'
+      }
+</script>
 
 <script>
 
@@ -122,7 +114,6 @@ function statusChangeCallback(response) {
 	 console.log('statusChangeCallback');
 	 console.log(response);
 	 console.log(response.authResponse.accessToken);
-	 //alert(response.authResponse.accessToken);
 	 FB.login((response)=>{
              if (response.status === 'connected') {
 	 window.location.href='./ConfirmUser.jsp?access_token='+response.authResponse.accessToken; 
