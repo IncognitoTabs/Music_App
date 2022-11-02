@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="400727485680-va07ln04qr2fbg5ng3db8gsdveh4v806.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Login - Music</title>
 
     <link rel="stylesheet" href="../assets/css/style-login-reg.css">
@@ -17,6 +14,7 @@
 
 <body>
     <div class="login">
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
         <div class="logo">
             <p>
                 <i class="fa-solid fa-music"></i>
@@ -37,17 +35,14 @@
 	            data-use-continue-as="false"
 	            data-onlogin="checkLoginState();">    
 	        </div>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <button class="btn btn--gg" >
+                    <span class="icon-gg" style="float: left; margin: 0 0 5px 10px;"></span>
+                    <a style="text-decoration: none; color: black" href="https://accounts.google.com/o/oauth2/auth?scope=openid%20email%20profile&redirect_uri=http://localhost:8080/music_app/pages/ConfirmUser.jsp&response_type=code
+		   &client_id=400727485680-va07ln04qr2fbg5ng3db8gsdveh4v806.apps.googleusercontent.com&approval_prompt=force">
+                        Continue with Google
+                    </a>
+                </button>
             </div>
-    <!-- google logout -->
-<!--   <button onclick="myFunction()">Sign Out</button>
-   <script>
-      function myFunction() {
-      gapi.auth2.getAuthInstance().disconnect();
-      location.reload();
-   }
-   </script>-->
-            
             <div class="line" id="sperator">
                 <hr>
                 <p>OR</p>
@@ -89,27 +84,12 @@
             </div>
         </div>
     </div>
-
-<script type="text/javascript">
-        function onSignIn(googleUser) {
-        window.location.href='ConfirmUser.jsp';
-        var profile = googleUser.getBasicProfile();
-        var imagurl=profile.getImageUrl();
-        var name=profile.getName();
-        var email=profile.getEmail();
-//        document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=success.jsp?                  
-//        email='+email+'&name='+name+'/>Continue with Google login</a></p>'
-      }
-</script>
-
 <script>
-
 function checkLoginState() {
 	 FB.getLoginStatus(function(response) {
 	 statusChangeCallback(response);
 	 });
 	 }
-	 
 function statusChangeCallback(response) {
 	 console.log('statusChangeCallback');
 	 console.log(response);
@@ -143,9 +123,7 @@ function statusChangeCallback(response) {
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
- 
 </script>
-
 </body>
 
 </html>
