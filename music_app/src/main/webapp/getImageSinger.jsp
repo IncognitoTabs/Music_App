@@ -1,4 +1,5 @@
 <%@page import="com.javaConnection.ConnectionUtils"%>
+<%@page import="com.javaConnection.OracleConnection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.Blob"%>
 <%@page import="java.io.OutputStream"%>
@@ -9,7 +10,7 @@
 <%
     String id = request.getParameter("id");
     try {
-        Connection con = ConnectionUtils.getConnection();
+        Connection con = OracleConnection.getOracleConnection();
         PreparedStatement ps = con.prepareStatement("select * from singer where id_singer=?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
