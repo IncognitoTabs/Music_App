@@ -16,22 +16,24 @@ create table album(
 create table singer(
 	id_singer varchar2(10) primary key ,
 	name_singer nvarchar2(100),
-	picture_singer clob
-)
-create table song(
-	id_song varchar2(10) primary key,
-	id_singer varchar2(10),
-	id_album varchar2(10),
-    id_genre varchar2(10),
-	path_song varchar2(255),
-	listens number (10),
-	postBy_song nvarchar2(255),
-	postDay_song date
+	picture_singer blob
 )
 create table genres(
 	id_genre varchar2(10) primary key,
 	name_genre nvarchar2(255)
 )
+create table song(
+	id_song varchar2(10) primary key,
+	id_singer varchar2(10),
+	id_album varchar2(10),
+  id_genre varchar2(10),
+  picture_song blob,
+	path_song varchar2(255),
+	listens number (10),
+	postBy_song nvarchar2(255),
+	postDay_song date
+)
+
 
 create table users(
 	id_user varchar2(10) primary key,
@@ -41,7 +43,7 @@ create table users(
 	email varchar2(255),
 	decentralization number(1),
 	registration_date date,
-	avatar clob
+	avatar blob
 )
 ALTER TABLE album 
 ADD CONSTRAINT fk_singer_album
@@ -66,27 +68,7 @@ create table mng_album(
     transaction_date varchar2(30)
     
 );
-create or replace trigger album_trg
-before insert or update or delete on album
-for each row
-declare
-    v_user varchar2(10);
-    v_date varchar2(30);
-begin
-    select user, to_char(sysdate, 'DD/MM/YY HH24:MI:SS') into v_user,v_date from dual;
-    if inserting then
-        insert into mng_album(table_name, transaction_name, by_user,transaction_date)
-        values('ALBUM','INSERTING',v_user,v_date);
-    elsif updating then
-        insert into mng_album(table_name, transaction_name, by_user,transaction_date)
-        values('ALBUM','UPDATING',v_user,v_date);
-    elsif deleting then
-        insert into mng_album(table_name, transaction_name, by_user,transaction_date)
-        values('ALBUM','DELETING',v_user,v_date);
-    end if;
-end;
 
-insert into album(id_album,name_albums,id_singer) values('08','Tracking NO2','05');
 -------------
 desc album;
 create table album_backup as select * from album;
@@ -161,13 +143,14 @@ before insert or update or delete on song
 for each row
 begin
     if inserting then
-        insert into song_backup(id_song,id_singer,id_album,id_genre,path_song,listens,postby_song,postday_song)
-        values(:new.id_song,:new.id_singer,:new.id_album,:new.id_genre,:new.path_song,:new.listens,:new.postby_song,:new.postday_song);
+        insert into song_backup(id_song,id_singer,id_album,id_genre,picture_song,path_song,listens,postby_song,postday_song)
+        values(:new.id_song,:new.id_singer,:new.id_album,:new.id_genre,:new.picture_song,:new.path_song,:new.listens,:new.postby_song,:new.postday_song);
     elsif updating then
         update song_backup set id_song=:new.id_song,
         id_singer=:new.id_singer,
         id_album=:new.id_album,
         id_genre=:new.id_genre,
+        picture_song=:new.picture_song,
         path_song=:new.path_song,
         listens=:new.listens,
         postby_song=:new.postby_song,
@@ -260,6 +243,7 @@ begin
     select users_seq.nextval into :NEW.id_user from dual; 
   end if; 
 end;
+
 ---trigger auto-crement table song
 create sequence song_seq start with 10 increment by 1;
 
@@ -283,6 +267,7 @@ begin
     select singer_seq.nextval into :NEW.id_singer from dual; 
   end if; 
 end;
+
 ---trigger auto-crement table genres
 
 create sequence genres_seq start with 10 increment by 1;
@@ -295,6 +280,7 @@ begin
     select genres_seq.nextval into :NEW.id_genre from dual; 
   end if; 
 end;
+
 ---trigger auto-crement table album
 create sequence album_seq start with 10 increment by 1;
 
@@ -309,21 +295,21 @@ end;
 
 --add data into table singer
 insert into singer(name_singer)
-values (N'?àm V?nh H?ng');
+values ('?�m V?nh H?ng');
 insert into singer(name_singer)
-values (N'S?n Tùng M-TP');
+values ('S?n T�ng M-TP');
 insert into singer(name_singer)
-values (N'Hà Anh Tu?n');
+values ('H� Anh Tu?n');
 insert into singer(name_singer)
-values (N'Bùi Anh Tu?n');
+values ('B�i Anh Tu?n');
 insert into singer(name_singer)
-values (N'Phan M?nh Qu?nh');
+values ('Phan M?nh Qu?nh');
 insert into singer(name_singer)
-values (N'L??ng Bích H?u');
+values ('L??ng B�ch H?u');
 insert into singer(name_singer)
-values (N'Uyên Linh');
+values ('Uy�n Linh');
 insert into singer(name_singer)
-values (N'Thu Minh');
+values ('Thu Minh');
 
 --add data into table genres
 insert into genres(name_genre) values ('Pop');
@@ -339,7 +325,7 @@ insert into genres(name_genre) values ('Accoustic');
 insert into genres(name_genre) values ('Bolero');
 
 insert into album ( name_albums, id_singer)
-values (n'Vol.2 Ây da Ây da','15');
+values (n'Vol.2 �y da �y da','15');
 insert into album ( name_albums, id_singer)
 values ('It is Not Over','15');
 insert into album ( name_albums, id_singer)
@@ -347,7 +333,7 @@ values ('Story of Time','15');
 insert into album ( name_albums, id_singer)
 values (N'??t t?ng ?o?n ru?t','15');
 insert into album (name_albums, id_singer)
-values (N'Mình c??i nhau nhé','15');
+values (N'M�nh c??i nhau nh�','15');
 -------------------------------------------
 
 insert into users ( name_user, name_account, password, email, decentralization, registration_date )
@@ -373,8 +359,8 @@ values(N'Phung','Phung','Phung','Phung@gmail.com',0,'24-sep-22 ');
 
 
 ------------------------------------------
-insert into song ( id_singer, id_album, id_genre,path_song,postday_song)
-values ('10','10','10','https://firebasestorage.googleapis.com/v0/b/fir-dc1e5.appspot.com/o/Mp3%2FLuongBichHuu%2FTaiNhacMienPhi.Net%20-%20Em%20D%E1%BB%ABng%20L%E1%BA%A1i.mp3?alt=media&token=aa5cfa33-81e9-4989-ab5a-405b4b4e8ee7','24-sep-22');
+--insert into song ( id_singer, id_album, id_genre,picture_song,path_song,postday_song)
+--values ('10','10','10','https://firebasestorage.googleapis.com/v0/b/fir-dc1e5.appspot.com/o/Mp3%2FLuongBichHuu%2FTaiNhacMienPhi.Net%20-%20Em%20D%E1%BB%ABng%20L%E1%BA%A1i.mp3?alt=media&token=aa5cfa33-81e9-4989-ab5a-405b4b4e8ee7','24-sep-22');
 ---------------------------
 --trigger
 CREATE OR REPLACE TRIGGER bi_album
@@ -389,3 +375,26 @@ begin
 end;
 
 insert into album(name_albums,id_singer) values(N'Buowsc qua nhau','10');
+
+-------------
+create or replace trigger album_trg
+before insert or update or delete on album
+for each row
+declare
+    v_user varchar2(10);
+    v_date varchar2(30);
+begin
+    select user, to_char(sysdate, 'DD/MM/YY HH24:MI:SS') into v_user,v_date from dual;
+    if inserting then
+        insert into mng_album(table_name, transaction_name, by_user,transaction_date)
+        values('ALBUM','INSERTING',v_user,v_date);
+    elsif updating then
+        insert into mng_album(table_name, transaction_name, by_user,transaction_date)
+        values('ALBUM','UPDATING',v_user,v_date);
+    elsif deleting then
+        insert into mng_album(table_name, transaction_name, by_user,transaction_date)
+        values('ALBUM','DELETING',v_user,v_date);
+    end if;
+end;
+
+insert into album(id_album,name_albums,id_singer) values('08','Tracking NO2','05');
