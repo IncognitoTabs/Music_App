@@ -4,30 +4,30 @@ import java.sql.Date;
 
 public class User {
 	private String id;
-	private String user_name;
-	private String full_name;
+	private String name_user;
+	private String name_account;
 	private String password;
 	private String email;
 	private int decentralization;
 	private Date registration_date;
-	private String avatar;
+	private byte[] avatar;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getAccount_name() {
+		return name_account;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setAccount_name(String name_account) {
+		this.name_account = name_account;
 	}
 	public String getFull_name() {
-		return full_name;
+		return name_user;
 	}
 	public void setFull_name(String full_name) {
-		this.full_name = full_name;
+		this.name_user = full_name;
 	}
 	public String getPassword() {
 		return password;
@@ -53,10 +53,10 @@ public class User {
 	public void setRegistration_date(Date registration_date) {
 		this.registration_date = registration_date;
 	}
-	public String getAvatar() {
+	public byte[] getAvatar() {
 		return avatar;
 	}
-	public void setAvatar(String avatar) {
+	public void setAvatar(byte[] avatar) {
 		this.avatar = avatar;
 	}
 	
