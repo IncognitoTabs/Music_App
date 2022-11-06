@@ -58,7 +58,6 @@ public class GG_Profile {
 	     user.setFull_name(myResponse.getString("name"));
 	     user.setId(myResponse.getString("id"));
 	     user.setEmail(myResponse.getString("email"));
-             user.setAvatar(myResponse.getString("picture"));
 		return user;
     }
 }

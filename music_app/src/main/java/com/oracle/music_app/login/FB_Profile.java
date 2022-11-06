@@ -36,10 +36,6 @@ public class FB_Profile {
 	     user.setFull_name(myResponse.getString("name"));
 	     user.setId(myResponse.getString("id"));
 	     user.setEmail(myResponse.getString("email"));
-	     JSONObject picture_reponse=myResponse.getJSONObject("picture");
-	     JSONObject data_response=picture_reponse.getJSONObject("data");
-	     System.out.println("URL : "+data_response.getString("url"));
-	     user.setAvatar(data_response.getString("url"));
              isFB = true;
 		return user;
 	   }
