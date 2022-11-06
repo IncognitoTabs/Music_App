@@ -8,6 +8,7 @@ package com.javaServlet;
 import com.javaDao.RegisterDAO;
 import com.oracle.music_app.model.User;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hoang
  */
-@WebServlet(urlPatterns={"/RegisterServlet"})
+@WebServlet(name = "RegisterServlet", urlPatterns = {"/RegisterServlet"})
 public class RegisterServlet extends HttpServlet {
 
     /**
@@ -85,7 +86,11 @@ public class RegisterServlet extends HttpServlet {
          
          if(userRegistered.equals("SUCCESS"))   //On success, you can display a message to user on Home page
          {
-            request.getRequestDispatcher("/index.html").forward(request, response);
+            HttpSession session = (HttpSession) request.getSession();
+            session.setMaxInactiveInterval(10*60);
+            session.setAttribute("User", email);
+            request.setAttribute("userName", registerBean.getFull_name());
+            request.getRequestDispatcher("/admin/home_member.jsp").forward(request, response);
          }
          else   //On Failure, display a meaningful message to the User.
          {

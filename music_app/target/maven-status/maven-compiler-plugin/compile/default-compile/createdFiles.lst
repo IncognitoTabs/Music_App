@@ -4,6 +4,7 @@ com\oracle\music_app\model\Constants.class
 com\oracle\music_app\model\User.class
 com\javaDao\SingerDAO.class
 com\javaConnection\ConnectionUtils.class
+com\javaDao\LoginDAO.class
 com\javaFilter\JDBCFilter.class
 com\javaServlet\RegisterServlet.class
 com\javaConnection\OracleConnection.class
@@ -11,4 +12,6 @@ com\javaDTO\Singer.class
 com\oracle\music_app\login\FB_Profile.class
 com\oracle\music_app\login\GG_Profile.class
 com\javaDao\MyUtils.class
+com\javaServlet\LogoutServlet.class
 com\javaDao\RegisterDAO.class
+com\javaServlet\LoginServlet.class

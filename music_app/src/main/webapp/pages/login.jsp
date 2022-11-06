@@ -60,13 +60,13 @@
             <form action="<%=request.getContextPath()%>/LoginServlet" method="post" class="form-login">
                 <!-- form login -->
                 <div class="user-address">
-                    <p class="form__user">Email address or username</p>
-                    <input type="text" placeholder="Email address or username" class="form__input-user">
+                    <p class="form__user">Email address </p>
+                    <input type="text" placeholder="Email address " name="email" class="form__input-user" required>
                 </div>
 
                 <div class="user-password">
                     <p class="form__password">Password</p>
-                    <input type="password" placeholder="Password" class="form__input-password">
+                    <input type="password" placeholder="Password" name="password" class="form__input-password" required>
                 </div>
                 <!-- forgot password-->
                 <a href="" class="forgot-password">Forgot your password?</a>
