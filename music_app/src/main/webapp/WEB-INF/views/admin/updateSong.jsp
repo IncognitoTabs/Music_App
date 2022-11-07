@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +19,7 @@
     <title>Music</title>
     
 </head>
-<form action='/music_app/AddSinger' method='post' enctype='multipart/form-data'>
+<form action='/music_app/UpdateSong' method='post' enctype='multipart/form-data'>
 <body>
     <div class="header">
         <div class="col-2"></div>
@@ -37,7 +37,7 @@
             </nav>
         </div>
     </div>
-        <div class="container-fluid">
+       <div class="container-fluid">
         <div class="main">
             <div class="row">
                 <div class="menu-bar col-2">
@@ -111,7 +111,7 @@
                     <div class="list-items">
                         <!-- Name category vs see all music in category-->
                         <div class="title-items">
-                            <p>Add Singer</p>
+                            <p>Update Music ${song.name}</p>
                           
                             
                         </div>
@@ -120,28 +120,85 @@
                         <!-- name music -->
                         <div class="row">
                             <div class="addmusic">
-                                <p style="color: white;" > Singer Name
+                                <p style="color: white;" >Name Music
                                     <div class="input-group mb-3">
-                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >
+                                        <input type="text" value='${song.name}' name='SongName'class="form-control" placeholder="Input name music here!"  >
                                        
                                       </div>
                                 </p>
                             </div>
+                            <!-- Singer -->
+                            <div class="Singer">
+                                <p style="color: white;" >Singer </p>
+                                <div class="input-group mb-3">
+                                    <select name='NameSinger' class="custom-select" id="inputGroupSelect02">
+                                     <c:forEach items="${singerList}" var="singer">
+                                  <option value="${singer.id}">${singer.name}</option>
+       							</c:forEach> 
+                                    </select>
+                                    <div class="input-group-append">
+                                        <a class="btn btn-primary" href="AddSinger" role="button">Add Singer</a>
+                                        <a class="btn btn-primary" href="GetSinger" role="button">Singer Manager</a>
+                                    </div>
+                                  </div>
+                    
                            
-                            <!-- add file Singer  -->
-                            <p style="color: white;" >Choose Singer Picture 
+                         </div> 
+
+                         </div>
+                         <!-- add album -->
+                         <div class="album">
+                            <p style="color: white;" >Album </p>
+                    
+                            <div class="input-group mb-3">
+                                <select name='NameAlbum' class="custom-select" id="inputGroupSelect02">
+                                  <c:forEach items="${albumList}" var="album">
+                                  <option value="${album.id}">${album.name}</option>
+       							</c:forEach> 
+                                </select>
+                                <div class="input-group-append">
+                                    <a class="btn btn-primary" href="AddAlbum" role="button">Add Album</a>
+                                </div>
+                              </div>
+
+                         </div>
+                            <!-- add Category -->
+                            <p style="color: white;" >Category </p>
+                    
+                            <div class="input-group mb-3">
+                                <select name='NameGenre' class="custom-select" id="inputGroupSelect02">
+                                  <c:forEach items="${genreList}" var="genre">
+                                  <option value="${genre.id}">${genre.name}</option>
+       							</c:forEach> 
+                                </select>
+                                <div class="input-group-append">
+                                    <a class="btn btn-primary" href="AddGenres" role="button">Add Category</a>
+                                    <a class="btn btn-primary" href="GetGenres" role="button">Category Manager</a>
+                                </div>
+                              </div>
+                            <!-- choose file  -->
+                            <p style="color: white;" >Choose file mp3 
                                 <div class="input-group">
                                     <div class="custom-file">
-                                      <input type="file" name= "ImageSinger" class="custom-file-input" id="inputGroupFile04">
+                                      <input type="file" name='DataSong' class="custom-file-input" id="inputGroupFile04">
                                       <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                                     </div>
                                   
                                   </div>
+                                  <p style="color: white;" >Choose image
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                          <input type="file" name='ImageSong'class="custom-file-input" id="inputGroupFile04">
+                                          <label class="custom-file-label" for="inputGroupFile04">Choose image</label>
+                                        </div>
+                                      
+                                      </div>
+                                </p>
                             </p>
                             <!--add music  -->
                             <div class="addmusic">
 
-                                <button type="submit" class="btn btn-success">Add Singer</button>
+                                <button type="submit" class="btn btn-success">Update Music</button>
                             </div>
                             
                         </div>
@@ -160,6 +217,4 @@
 
 </body>
 </form>
-
-
 </html>

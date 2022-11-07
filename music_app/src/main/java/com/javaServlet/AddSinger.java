@@ -43,7 +43,8 @@ public class AddSinger extends HttpServlet{
         if (part != null ) {
             try {
                 InputStream is = part.getInputStream();
-    			SingerDAO.insertProduct(conn, singer,is);
+    			SingerDAO.addSinger(conn, singer,is);
+    			response.sendRedirect(request.getContextPath() + "/GetGenres");
             } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
