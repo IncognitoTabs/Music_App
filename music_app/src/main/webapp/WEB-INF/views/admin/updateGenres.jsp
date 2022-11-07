@@ -19,14 +19,14 @@
     <title>Music</title>
     
 </head>
-<form action='/music_app/AddSinger' method='post' enctype='multipart/form-data'>
+<form action='/music_app/UpdateGenres' method='post' >
 <body>
     <div class="header">
         <div class="col-2"></div>
         <div class="col-10">
             <nav class="navbar navbar-expand-lg">
                 <div class="folder-list_header collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- back next button -->
+                    <!-- back next buttton -->
                     <div class="navbar-nav me-auto mb-2 mb-lg-0 control-b-n">
                         <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-left"></i></a>
                         <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-right"></i></a>
@@ -111,37 +111,26 @@
                     <div class="list-items">
                         <!-- Name category vs see all music in category-->
                         <div class="title-items">
-                            <p>Add Singer</p>
+                            <p>Update Category ${genres.name}</p>
                           
                             
                         </div>
 
                         </div>
-                        <!-- name music -->
+                        <!-- name Category -->
                         <div class="row">
                             <div class="addmusic">
-                                <p style="color: white;" > Singer Name
+                                <p style="color: white;" >Name Category
                                     <div class="input-group mb-3">
-                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >
+                                        <input type="text" value="${genres.name}"  name ='GenresName'class="form-control" placeholder="Input name Category here!"  >
                                        
                                       </div>
                                 </p>
                             </div>
-                           
-                            <!-- add file Singer  -->
-                            <p style="color: white;" >Choose Singer Picture 
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                      <input type="file" name= "ImageSinger" class="custom-file-input" id="inputGroupFile04">
-                                      <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                                    </div>
-                                  
-                                  </div>
-                            </p>
-                            <!--add music  -->
+                          
+                            <!--add Category  -->
                             <div class="addmusic">
-
-                                <button type="submit" class="btn btn-success">Add Singer</button>
+                                <button type="submit" class="btn btn-success">Update Category</button>
                             </div>
                             
                         </div>
@@ -160,6 +149,4 @@
 
 </body>
 </form>
-
-
 </html>

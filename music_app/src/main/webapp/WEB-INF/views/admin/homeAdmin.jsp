@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +17,8 @@
    
 
     <title>Music</title>
-    
 </head>
-<form action='/music_app/AddSinger' method='post' enctype='multipart/form-data'>
+
 <body>
     <div class="header">
         <div class="col-2"></div>
@@ -31,7 +30,26 @@
                         <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-left"></i></a>
                         <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-right"></i></a>
                     </div>
-                  
+                    <!-- Dropdownn -->
+          
+                   <div class="dropdown">
+                       <button class="btn btn-secondary dropdown-toggle" type="button" 
+                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin 
+                        </button>
+                         
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                         
+                            <li><a class="dropdown-item" href="AddSong">Add Music</a></li>
+                            <li> <a class="dropdown-item" href="AddAlbum">Add Album</a></li>
+                            <li> <a class="dropdown-item" href="AddSinger">Add Singer</a></li>
+                            <li><a class="dropdown-item" href="GetSong">Song Manager</a></li>
+                            <li> <a class="dropdown-item" href="GetAlbum">Album Manager</a></li>
+                            <li> <a class="dropdown-item" href="#">Log Out</a></li>
+                          </ul>
+                        
+                        </div>
+                          
                     
                 </div>
             </nav>
@@ -110,43 +128,27 @@
 
                     <div class="list-items">
                         <!-- Name category vs see all music in category-->
-                        <div class="title-items">
-                            <p>Add Singer</p>
-                          
-                            
-                        </div>
 
+                              <c:forEach items="${list}" var="List">
+                              <div class="title-items">
+                            <p>${List.nameSinger}</p>
+                            <a href="#">see all</a>
                         </div>
-                        <!-- name music -->
                         <div class="row">
-                            <div class="addmusic">
-                                <p style="color: white;" > Singer Name
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >
-                                       
-                                      </div>
-                                </p>
-                            </div>
-                           
-                            <!-- add file Singer  -->
-                            <p style="color: white;" >Choose Singer Picture 
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                      <input type="file" name= "ImageSinger" class="custom-file-input" id="inputGroupFile04">
-                                      <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                            <!-- music item -->
+                            <div class="col-12 col-sm-6 col-md-2 image">
+                                <a href="#" class="content-items">
+                                    <div class="img-size">
+                                        <img src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
+                                            alt="">
                                     </div>
-                                  
-                                  </div>
-                            </p>
-                            <!--add music  -->
-                            <div class="addmusic">
-
-                                <button type="submit" class="btn btn-success">Add Singer</button>
+                                    <h5>${List.nameAlbum}</h5>
+                                    <p class="name-singer">${List.nameSinger}</p>
+                                </a>
                             </div>
-                            
-                        </div>
-                    </div>
-                   
+                         </div>
+       								</c:forEach> 
+
                 </div>
             </div>
 
@@ -159,7 +161,5 @@
         crossorigin="anonymous"></script>
 
 </body>
-</form>
-
 
 </html>
