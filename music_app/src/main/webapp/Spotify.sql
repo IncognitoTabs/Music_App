@@ -2,6 +2,8 @@ create user c##spotify identified by spotify;
 grant unlimited tablespace to c##spotify;
 grant resource, connect, dba to c##spotify;
 
+
+
 create table album(
 	id_album varchar2(10) primary key,
 	name_albums nvarchar2(255),
@@ -16,13 +18,14 @@ create table album(
 create table singer(
 	id_singer varchar2(10) primary key ,
 	name_singer nvarchar2(100),
-	picture_singer clob
+	picture_singer blob
 )
 create table song(
 	id_song varchar2(10) primary key,
 	id_singer varchar2(10),
 	id_album varchar2(10),
-    id_genre varchar2(10),
+    	id_genre varchar2(10),
+	name_song varchar2(255),
 	path_song varchar2(255),
 	listens number (10),
 	postBy_song nvarchar2(255),
