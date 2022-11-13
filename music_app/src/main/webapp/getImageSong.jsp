@@ -12,11 +12,11 @@
     String id = request.getParameter("id");
     try {
         Connection con = OracleConnection.getOracleConnection();
-        PreparedStatement ps = con.prepareStatement("select * from singer where id_singer=?");
+        PreparedStatement ps = con.prepareStatement("select * from song where id_song=?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            Blob blob = rs.getBlob("picture_singer");
+            Blob blob = rs.getBlob("picture_song");
             byte byteArray[] = blob.getBytes(1, (int) blob.length());
             response.setContentType("image/gif");
             OutputStream os = response.getOutputStream();

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +20,7 @@
     <title>Music</title>
     
 </head>
-<form action='/music_app/AddSinger' method='post' enctype='multipart/form-data'>
+
 <body>
     <div class="header">
         <div class="col-2"></div>
@@ -111,38 +112,35 @@
                     <div class="list-items">
                         <!-- Name category vs see all music in category-->
                         <div class="title-items">
-                            <p>Add Singer</p>
+                            <p>Category Manager</p>
                           
                             
                         </div>
 
                         </div>
-                        <!-- name music -->
-                        <div class="row">
-                            <div class="addmusic">
-                                <p style="color: white;" > Singer Name
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >
-                                       
-                                      </div>
-                                </p>
-                            </div>
-                           
-                            <!-- add file Singer  -->
-                            <p style="color: white;" >Choose Singer Picture 
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                      <input type="file" name= "ImageSinger" class="custom-file-input" id="inputGroupFile04">
-                                      <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                                    </div>
-                                  
-                                  </div>
-                            </p>
-                            <!--add music  -->
-                            <div class="addmusic">
+                        <table class="table table-dark">
+                            <thead>
+                              <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Category Name</th>
+                               
+                                <th scope="col">Act</th>
 
-                                <button type="submit" class="btn btn-success">Add Singer</button>
-                            </div>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                     <c:forEach items="${genresList}" var="genres">
+		                              <tr>
+		                                <th scope="row">${genres.id}</th>
+		                                <td >${genres.name} </td>   
+		                           
+		                                <td>
+		                                    <a href="UpdateGenres?id=${genres.id}"
+		                                    class="btn btn-primary btn-lg active btnUpdate" role="button" aria-pressed="true">Update</a>
+		                                    <a href="DeleteGenres?id=${genres.id}"  class="btn btn-danger" role="button" aria-pressed="true">Danger</a>  </td>
+       								</c:forEach>  
+                            </tbody>
+                          </table>
                             
                         </div>
                     </div>
@@ -159,7 +157,5 @@
         crossorigin="anonymous"></script>
 
 </body>
-</form>
-
 
 </html>

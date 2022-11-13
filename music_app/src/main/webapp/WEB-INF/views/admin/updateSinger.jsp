@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +18,7 @@
     <title>Music</title>
     
 </head>
-<form action='/music_app/AddSinger' method='post' enctype='multipart/form-data'>
+<form action='/music_app/UpdateSinger' method='post' enctype='multipart/form-data'>
 <body>
     <div class="header">
         <div class="col-2"></div>
@@ -111,7 +110,7 @@
                     <div class="list-items">
                         <!-- Name category vs see all music in category-->
                         <div class="title-items">
-                            <p>Add Singer</p>
+                            <p>Update Singer ${singer.name}</p>
                           
                             
                         </div>
@@ -122,12 +121,11 @@
                             <div class="addmusic">
                                 <p style="color: white;" > Singer Name
                                     <div class="input-group mb-3">
-                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >
+                                        <input type="text" name="SingerName" class="form-control" value="${singer.name}" >
                                        
                                       </div>
                                 </p>
                             </div>
-                           
                             <!-- add file Singer  -->
                             <p style="color: white;" >Choose Singer Picture 
                                 <div class="input-group">
@@ -141,7 +139,7 @@
                             <!--add music  -->
                             <div class="addmusic">
 
-                                <button type="submit" class="btn btn-success">Add Singer</button>
+                                <button type="submit" class="btn btn-success">Update Singer</button>
                             </div>
                             
                         </div>
