@@ -14,7 +14,7 @@ public class Constants {
 
 	public static String GOOGLE_CLIENT_SECRET = "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";
 
-	public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/music_app/pages/ConfirmUser.jsp";
+	public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/music_app/LoginWithApiServlet";
 
 	public static String GOOGLE_LINK_GET_TOKEN = "https://accounts.google.com/o/oauth2/token";
 
