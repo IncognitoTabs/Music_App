@@ -23,7 +23,6 @@
             rel="stylesheet">
     </head>
     <body>
-<<<<<<< HEAD
         <%  
             User user = new User(); 
             String access_token=(String)request.getParameter("access_token");
@@ -34,17 +33,6 @@
                 user = new GG_Profile().call_me(code);
             }
         %>
-=======
-        <%String access_token=(String)request.getParameter("access_token");
-            FB_Profile profile=new FB_Profile();
-            User user= profile.call_me(access_token);
-            %>
-<!--            Name : <%=user.getUser_name() %><br>
-            Email : <%=user.getEmail() %><br>
-            id : <%=user.getId() %><br>
-            Profile Picture : <%=user.getAvatar() %><br>
-            <img src="<%=user.getAvatar() %>"></img>-->
->>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
         <div class="signup">
             <div class="logo">
                 <p>
@@ -73,11 +61,7 @@
                             <input type="text" 
                                    placeholder="Enter your email again." 
                                    class="form__input-email-again" 
-<<<<<<< HEAD
                                    value="<%=user.getEmail()%>"
-=======
-                                   value="<%=user.getEmail() %>"
->>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
                                    name="email_confirm" required>
                         </div>
 
@@ -91,11 +75,7 @@
                             <input type="text" 
                                    placeholder="Enter a profile name." 
                                    class="form__input-profile-name" 
-<<<<<<< HEAD
                                    value="<%=user.getFull_name()%>"
-=======
-                                   value="<%=user.getUser_name() %>"
->>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
                                    name="username" required>
                             <p class="helpText">This appears on your profile.</p>
                         </div>

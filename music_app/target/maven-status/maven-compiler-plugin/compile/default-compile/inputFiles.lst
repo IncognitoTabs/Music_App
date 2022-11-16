@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\main\java\com\javaDao\SingerDAO.java
 E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\main\java\com\javaServlet\ShowSinger.java
 E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\main\java\com\oracle\music_app\model\User.java
@@ -12,7 +11,3 @@ E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\mai
 E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\main\java\com\javaDTO\Singer.java
 E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\main\java\com\javaConnection\ConnectionUtils.java
 E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\main\java\com\javaServlet\AddSinger.java
-=======
-E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\main\java\com\oracle\music_app\login\FB_Profile.java
-E:\Workspace\My Document\Oracle\Project\Music_Stream\Music_App\music_app\src\main\java\com\oracle\music_app\model\User.java
->>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
