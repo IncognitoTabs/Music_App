@@ -47,10 +47,12 @@ public class LoginDAO {
                     if(email.equals(emailDB) && password.equals(passwordDB) && roleDB == 1){
                         loginBean.setFull_name(fullnameDB);
                         loginBean.setDecentralization(1);
+                        break;
                     }
                     else if(email.equals(emailDB) && password.equals(passwordDB) && roleDB == 0){
                         loginBean.setFull_name(fullnameDB);
                         loginBean.setDecentralization(0);
+                        break;
                     }
                 }
             } catch (SQLException ex) {
@@ -66,14 +68,16 @@ public class LoginDAO {
         Statement statement = null;
         ResultSet resultSet = null;
 
-        String passwordDB = "";
+        String usernameDB = "";
             try {
                 con = OracleConnection.getOracleConnection();
                 statement = con.createStatement();
-                resultSet = statement.executeQuery("select PASSWORD from users where EMAIL = '" +user.getEmail()+"'");
+                resultSet = statement.executeQuery("select PASSWORD, NAME_USER, from users where EMAIL = '" +user.getEmail()+"'");
                 System.out.println(user.getEmail());
-                if(resultSet.getString("PASSWORD") != null)
+                while(resultSet.isFirst())
                 {
+                    usernameDB = resultSet.getString("NAME_USER");
+                    user.setFull_name(usernameDB);
                     result = true;
                 }
             } catch (SQLException ex) {
