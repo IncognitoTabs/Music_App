@@ -9,11 +9,12 @@ import com.javaDao.LoginDAO;
 import com.oracle.music_app.model.User;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -59,6 +60,7 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static final long serialVersionUID = 1L;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -72,29 +74,31 @@ public class LoginServlet extends HttpServlet {
         {
             User loginBean = loginDao.authenticateUser(email,password);
 
-            switch (loginBean.getDecentralization()) {
-                case 1:
-                    {
-                        System.out.println("Admin's Home");
-                        HttpSession session = (HttpSession) request.getSession(); //Creating a session
-                        session.setAttribute("Admin", email); //setting session attribute
-                        request.setAttribute("userName", loginBean.getFull_name());
-                        request.getRequestDispatcher("/admin/home_admin.jsp").forward(request, response);
-                        break;
-                    }
-                case 0:
-                    {
-                        System.out.println("User's Home");
-                        HttpSession session = (HttpSession) request.getSession();
-                        session.setMaxInactiveInterval(10*60);
-                        session.setAttribute("User", email);
-                        request.setAttribute("userName", loginBean.getFull_name());
-                        request.getRequestDispatcher("/admin/home_member.jsp").forward(request, response);
-                        break;
-                    }
-                default:
-                    request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
-                    break;
+            if(loginBean.getDecentralization() == 1)
+            {
+                System.out.println("Admin's Home");
+
+                HttpSession session = (HttpSession) request.getSession(); //Creating a session
+                session.setAttribute("Admin", email); //setting session attribute
+                request.setAttribute("userName", loginBean.getFull_name());
+
+                request.getRequestDispatcher("/admin/home_admin.jsp").forward(request, response);
+            }
+            else if(loginBean.getDecentralization() == 0)
+            {
+                System.out.println("User's Home");
+
+                HttpSession session = (HttpSession) request.getSession();
+                session.setMaxInactiveInterval(10*60);
+                session.setAttribute("User", email);
+                request.setAttribute("userName", loginBean.getFull_name());
+
+                request.getRequestDispatcher("/admin/home_member.jsp").forward(request, response);
+            }
+            else
+            {
+
+                request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
             }
         }
         catch (IOException e1)
