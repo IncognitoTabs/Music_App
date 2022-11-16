@@ -20,43 +20,65 @@ import java.util.logging.Logger;
  */
 public class LoginDAO {
     public User authenticateUser(String email, String password) throws ClassNotFoundException
-{
-    User loginBean = new User();
-    loginBean.setEmail(email);
-    loginBean.setPassword(password);
- 
-    Connection con = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
- 
-    String emailDB = "";
-    String passwordDB = "";
-    String fullnameDB = "";
-    int roleDB = 0;
-        try {
-            con = OracleConnection.getOracleConnection();
-            statement = con.createStatement();
-            resultSet = statement.executeQuery("select EMAIL, PASSWORD, NAME_USER, DECENTRALIZATION from users");
-            while(resultSet.next())
-            {
-                emailDB = resultSet.getString("EMAIL");
-                passwordDB = resultSet.getString("PASSWORD");
-                roleDB = resultSet.getInt("DECENTRALIZATION");
-                fullnameDB = resultSet.getString("NAME_USER");
+    {
+        User loginBean = new User();
+        loginBean.setEmail(email);
+        loginBean.setPassword(password);
 
-                if(email.equals(emailDB) && password.equals(passwordDB) && roleDB == 1){
-                    loginBean.setFull_name(fullnameDB);
-                    loginBean.setDecentralization(1);
+        Connection con = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        String emailDB = "";
+        String passwordDB = "";
+        String fullnameDB = "";
+        int roleDB = 0;
+            try {
+                con = OracleConnection.getOracleConnection();
+                statement = con.createStatement();
+                resultSet = statement.executeQuery("select EMAIL, PASSWORD, NAME_USER, DECENTRALIZATION from users");
+                while(resultSet.next())
+                {
+                    emailDB = resultSet.getString("EMAIL");
+                    passwordDB = resultSet.getString("PASSWORD");
+                    roleDB = resultSet.getInt("DECENTRALIZATION");
+                    fullnameDB = resultSet.getString("NAME_USER");
+
+                    if(email.equals(emailDB) && password.equals(passwordDB) && roleDB == 1){
+                        loginBean.setFull_name(fullnameDB);
+                        loginBean.setDecentralization(1);
+                    }
+                    else if(email.equals(emailDB) && password.equals(passwordDB) && roleDB == 0){
+                        loginBean.setFull_name(fullnameDB);
+                        loginBean.setDecentralization(0);
+                    }
                 }
-                else if(email.equals(emailDB) && password.equals(passwordDB) && roleDB == 0){
-                    loginBean.setFull_name(fullnameDB);
-                    loginBean.setDecentralization(0);
-                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-    return loginBean;
+        return loginBean;
+    }   
+    public boolean isExistUser(User user) throws ClassNotFoundException
+    {
+        boolean result = false;
+
+        Connection con = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        String passwordDB = "";
+            try {
+                con = OracleConnection.getOracleConnection();
+                statement = con.createStatement();
+                resultSet = statement.executeQuery("select PASSWORD from users where EMAIL = '" +user.getEmail()+"'");
+                System.out.println(user.getEmail());
+                if(resultSet.getString("PASSWORD") != null)
+                {
+                    result = true;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return result;
     }   
 }
