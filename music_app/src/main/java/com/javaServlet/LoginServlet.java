@@ -7,14 +7,16 @@ package com.javaServlet;
 
 import com.javaDao.LoginDAO;
 import com.oracle.music_app.model.User;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 /**
  *
@@ -49,7 +51,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
     }
 
     /**
@@ -98,7 +100,7 @@ public class LoginServlet extends HttpServlet {
             else
             {
 
-                request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+                request.getRequestDispatcher("user/info-user.html").forward(request, response);
             }
         }
         catch (IOException e1)
