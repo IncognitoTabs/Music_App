@@ -37,7 +37,7 @@
             </nav>
         </div>
     </div>
-        <div class="container-fluid">
+    <div class="container-fluid">
         <div class="main">
             <div class="row">
                 <div class="menu-bar col-2">
@@ -49,13 +49,13 @@
                     <!-- nemu bar -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="HomeAdmin">
+                            <a class="nav-link" href="./home_admin.html">
                                 <i class="fa-solid fa-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Search">
+                            <a class="nav-link" href="./pages/search-page.html">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search
                             </a>
@@ -63,35 +63,35 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./pages/music-category.html">
                                 <i class="bi bi-music-note-list margin-top"></i>
-                                My Album
+                                My library
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="AddSong">
+                            <a class="nav-link" href="./AddMusic.html">
                                 <i class="bi bi-plus-circle-fill"></i>    
                                 Add Music
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="AddAlbum">
+                            <a class="nav-link" href="AddAlbum.html">
                                 <i class="bi bi-journal-plus"></i>    
                                 Add Album
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="AddSinger">
+                            <a class="nav-link" href="./AddSingle.html">
                                 <i class="bi bi-person-plus-fill"></i>    
                                 Add Singer
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="GetSong">
+                            <a class="nav-link" href="./MusicManager.html">
                                 <i class="bi bi-file-earmark-music-fill"></i>    
                                 Song Manager
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="GetAlbum">
+                            <a class="nav-link" href="./AlbumManager.html">
                                 <i class="bi bi-journal-album"></i>    
                                 Album Manager
                             </a>

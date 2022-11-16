@@ -1,4 +1,3 @@
-
 <%@page import="com.javaConnection.ConnectionUtils"%>
 <%@page import="com.javaConnection.OracleConnection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
