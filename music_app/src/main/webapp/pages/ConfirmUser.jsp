@@ -43,6 +43,7 @@ function validate()
 </script>
     </head>
     <body>
+<<<<<<< HEAD
         <%  
             User user; 
             if((request.getSession(false).getAttribute("RegisterUser")!= null) ){
@@ -51,6 +52,17 @@ function validate()
                 user = new User();
             }
         %>
+=======
+        <%String access_token=(String)request.getParameter("access_token");
+            FB_Profile profile=new FB_Profile();
+            User user= profile.call_me(access_token);
+            %>
+<!--            Name : <%=user.getUser_name() %><br>
+            Email : <%=user.getEmail() %><br>
+            id : <%=user.getId() %><br>
+            Profile Picture : <%=user.getAvatar() %><br>
+            <img src="<%=user.getAvatar() %>"></img>-->
+>>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
         <div class="signup">
             <div class="logo">
                 <p>
@@ -79,7 +91,7 @@ function validate()
                             <input type="text" 
                                    placeholder="Enter your email again." 
                                    class="form__input-email-again" 
-                                   value="<%=user.getEmail()!=null? user.getEmail(): ""%>"
+                                   value="<%=user.getEmail()%>"
                                    name="email_confirm" required>
                         </div>
 
@@ -93,8 +105,12 @@ function validate()
                             <input type="text" 
                                    placeholder="Enter a profile name." 
                                    class="form__input-profile-name" 
-                                   value="<%=user.getFull_name()!=null? user.getFull_name(): ""%>"
-                                   name="fullname" required>
+<<<<<<< HEAD
+                                   value="<%=user.getFull_name()%>"
+=======
+                                   value="<%=user.getUser_name() %>"
+>>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
+                                   name="username" required>
                             <p class="helpText">This appears on your profile.</p>
                         </div>
                         <div class="signup-btn">

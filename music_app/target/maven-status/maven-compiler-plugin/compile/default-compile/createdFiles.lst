@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+com\oracle\music_app\login\GG_Login.class
 com\javaServlet\AddSinger.class
 com\javaServlet\ShowSinger.class
 com\oracle\music_app\model\Constants.class
@@ -16,3 +18,7 @@ com\javaDao\MyUtils.class
 com\javaServlet\LogoutServlet.class
 com\javaDao\RegisterDAO.class
 com\javaServlet\LoginServlet.class
+=======
+com\oracle\music_app\login\FB_Profile.class
+com\oracle\music_app\model\User.class
+>>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
