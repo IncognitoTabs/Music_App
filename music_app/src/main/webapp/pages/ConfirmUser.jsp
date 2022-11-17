@@ -45,8 +45,13 @@ function validate()
     <body>
         <%  
             User user; 
-            if((request.getSession(false).getAttribute("RegisterUser")!= null) ){
-                user = (User) request.getSession(false).getAttribute("RegisterUser");
+            String access_token=(String)request.getParameter("access_token");
+            String code = request.getParameter("code");
+            
+            if(access_token != null){
+                user = new FB_Profile().call_me(access_token);
+            }else if(code != null){
+                user = new GG_Profile().call_me(code);
             }else{
                 user = new User();
             }
@@ -104,7 +109,7 @@ function validate()
 
                     <p class="login">
                         Have an account?
-                        <a href="./login.jsp">Login</a>.
+                        <a href="./login.html">Login</a>.
                     </p>
                 </div>
             </div>

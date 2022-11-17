@@ -8,6 +8,7 @@ package com.javaServlet;
 import com.javaDao.LoginDAO;
 import com.oracle.music_app.model.User;
 
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,8 +18,6 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import java.io.PrintWriter;
-
-
 
 /**
  *
@@ -64,6 +63,7 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static final long serialVersionUID = 1L;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -76,6 +76,7 @@ public class LoginServlet extends HttpServlet {
         try
         {
             User loginBean = loginDao.authenticateUser(email,password);
+
 
             switch (loginBean.getDecentralization()) {
                 case 1:

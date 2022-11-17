@@ -1,8 +1,3 @@
-<%-- 
-    Document   : home_admin
-    Created on : Nov 6, 2022, 2:20:53 PM
-    Author     : hoang
---%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
