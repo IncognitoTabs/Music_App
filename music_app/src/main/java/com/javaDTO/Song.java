@@ -64,11 +64,19 @@ public String getPath() {
 public void setPath(String path) {
     this.path = path;
 }
+public byte[] getData_song() {
+    return data_song;
+}
+public void setData_song(byte[] data_song) {
+    this.data_song = data_song;
+}
 private String name;
 private String idSinger;
 private String idAlbum;
 private String idGenre;
 private byte[] image;
 private byte[] data_song;
+
+
 private String path;
 }

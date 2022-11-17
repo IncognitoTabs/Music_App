@@ -1,11 +1,10 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Home</title>
+<meta charset="UTF-8">
+<title>Search</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,41 +32,32 @@
 		<div class="main">
 			<div class="row">
 				<jsp:include page="View/LeftBar.jsp"></jsp:include>
-				<!-- container info -->
-
-
 				<div class="folder-list col-10">
 					<div class="list-items">
-						<!-- Name category vs see all music in category-->
 						<div class="title-items">
-							<p>Mr Siro</p>
-							<a href="./show-music-in-category.html">see all</a>
+							<p>Browser all</p>
 						</div>
 						<div class="row">
-							<!-- music item hiển thị 6 mục trên 1 hàng-->
-							<div class="col-12 col-sm-6 col-md-2 image">
-								<a href="./MusicInfoUser" class="content-items">
-									<div class="img-size">
+							<!-- music item hiển thị 5 mục trên 1 hàng-->
+							<div class="col-10 col-sm-5 col-md-2-5 item__margin-top">
+								<a href="./search-in-category.html"
+									class="categoty-content-items">
+									<h5>Khóc cùng em</h5>
+									<div class="img-size-category">
 										<img
 											src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
 											alt="">
 									</div>
-									<h5>Khóc cùng em</h5>
-									<p class="name-singer">Mr Siro</p>
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</div>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-		crossorigin="anonymous"></script>
-
 
 </body>
 </html>
