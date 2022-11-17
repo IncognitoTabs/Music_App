@@ -7,8 +7,6 @@ package com.javaServlet;
 
 import com.javaDao.LoginDAO;
 import com.oracle.music_app.model.User;
-<<<<<<< HEAD
-
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,18 +18,6 @@ import java.io.IOException;
 
 import java.io.PrintWriter;
 
-<<<<<<< Updated upstream
-=======
-
-=======
-import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
