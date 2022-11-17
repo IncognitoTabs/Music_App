@@ -5,7 +5,6 @@ com\oracle\music_app\model\User.class
 com\javaDao\SingerDAO.class
 com\javaConnection\ConnectionUtils.class
 com\javaDao\LoginDAO.class
-com\javaServlet\LoginWithApiServlet.class
 com\javaFilter\JDBCFilter.class
 com\javaServlet\RegisterServlet.class
 com\javaConnection\OracleConnection.class

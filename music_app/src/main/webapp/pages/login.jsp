@@ -44,7 +44,7 @@
 	        </div>
                 <button class="btn btn--gg" >
                     <span class="icon-gg" style="float: left; margin: 0 0 5px 10px;"></span>
-                    <a style="text-decoration: none; color: black" href="https://accounts.google.com/o/oauth2/auth?scope=openid%20email%20profile&redirect_uri=http://localhost:8080/music_app/LoginWithApiServlet&response_type=code
+                    <a style="text-decoration: none; color: black" href="https://accounts.google.com/o/oauth2/auth?scope=openid%20email%20profile&redirect_uri=http://localhost:8080/music_app/pages/ConfirmUser.jsp&response_type=code
 		   &client_id=400727485680-va07ln04qr2fbg5ng3db8gsdveh4v806.apps.googleusercontent.com&approval_prompt=force">
                         Continue with Google
                     </a>
@@ -103,7 +103,7 @@ function statusChangeCallback(response) {
 	 console.log(response.authResponse.accessToken);
 	 FB.login((response)=>{
              if (response.status === 'connected') {
-	 window.location.href='../LoginWithApiServlet?access_token='+response.authResponse.accessToken; 
+	 window.location.href='./ConfirmUser.jsp?access_token='+response.authResponse.accessToken; 
 	 } else {
 	 // The person is not logged into your app or we are unable to tell.
 	 document.getElementById('status').innerHTML = 'Please log ' +

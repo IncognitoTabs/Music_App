@@ -1,8 +1,3 @@
-<%-- 
-    Document   : home_member
-    Created on : Nov 6, 2022, 2:19:45 PM
-    Author     : hoang
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -85,6 +85,53 @@ public class SongDAO {
         }
         return null;
     }
+    
+    
+    // chua xong : lấy dư lieu lên từ csdl: ? chọn kiểu cho file mp3 và img cho nó hiện lên dc
+    public static Song findSongWithFulllProp(Connection conn, String id) throws SQLException {
+        String sql = "Select a.* from song a where a.id_song=?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, id);
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            String  name= rs.getString("name_song");
+            String idSinger = rs.getString("id_singer");
+            String idAlbum = rs.getString("id_album");
+            String idGenre = rs.getString("id_genre");
+           
+            //get picture and convert it
+            Blob blob =  rs.getBlob("picture_song");
+            int blobLength = (int) blob.length();  
+            byte[] picture_data = blob.getBytes(1, blobLength);
+
+            //release the blob and free up memory. (since JDBC 4.0)
+            blob.free();
+            
+          //get song_data  and convert it
+            Blob data_song_blob = rs.getBlob("data_song");
+          //(assuming you have a ResultSet named RS)
+         
+            int blobLength_song = (int) data_song_blob.length();  
+            byte[] data_song = blob.getBytes(1, blobLength_song);
+
+            //release the blob and free up memory. (since JDBC 4.0)
+            data_song_blob.free();
+            
+            Song song = new Song();
+            song.setId(id);
+            song.setName(name);
+            song.setIdSinger(idSinger);
+            song.setIdAlbum(idAlbum);
+            song.setIdGenre(idGenre);
+            
+            song.setImage(picture_data);
+            song.setData_song(data_song);
+            return song;
+        }
+        return null;
+    }
     public static List<Song>  findSongAlbum(Connection conn, String id) throws SQLException {
         String sql = "Select a.id_song, a.name_song,a.id_singer,a.id_album,a.id_genre from song a where a.id_album=?";
         List<Song> list = new ArrayList<Song>();
