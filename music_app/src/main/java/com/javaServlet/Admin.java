@@ -35,29 +35,48 @@ public class Admin extends  HttpServlet{
         response.setContentType("text/html");
         Connection conn = MyUtils.getStoredConnection(request);
         //String errorString = null;
-        List<Singer> listSinger = null;
+//        List<Singer> listSinger = null;
+//        try {
+//            listSinger = SingerDAO.querySinger(conn);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            //errorString = e.getMessage();
+//        }
+        List<Album> listAlbum = null;
         try {
-            listSinger = SingerDAO.querySinger(conn);
+            listAlbum=AlbumDAO.queryAlbum(conn);
         } catch (SQLException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
-            //errorString = e.getMessage();
         }
-        List<SingerAlbum> list = new ArrayList<SingerAlbum>();
-        for(int i=0; i<listSinger.size(); i++) {
-            Album album= null;
+        for(int i=0; i<listAlbum.size();i++) {
+            Singer singer=null;
             try {
-                album=AlbumDAO.findAlbum(conn,listSinger.get(i).getId());
+                singer=SingerDAO.findSinger(conn, listAlbum.get(i).getIdSinger());
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            if(album!=null) {
-                SingerAlbum singerAlbum = new SingerAlbum(album.getIdSinger(),listSinger.get(i).getName(),album.getId(),album.getName());     
-                list.add(singerAlbum);
+            if(singer!=null) {
+                listAlbum.get(i).setIdSinger(singer.getName());
             }
         }
+//        List<SingerAlbum> list = new ArrayList<SingerAlbum>();
+//        for(int i=0; i<listSinger.size(); i++) {
+//            Album album= null;
+//            try {
+//                album=AlbumDAO.findAlbum(conn,listSinger.get(i).getId());
+//            } catch (SQLException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//            if(album!=null) {
+//                SingerAlbum singerAlbum = new SingerAlbum(album.getIdSinger(),listSinger.get(i).getName(),album.getId(),album.getName());     
+//                list.add(singerAlbum);
+//            }
+//        }
         //request.setAttribute("errorString", errorString);
-        request.setAttribute("list", list);
+        request.setAttribute("listAlbum", listAlbum);
         //request.setAttribute("errorString", errorString);
 //       Forward sang /WEB-INF/views/productListView.jsp
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/homeAdmin.jsp");

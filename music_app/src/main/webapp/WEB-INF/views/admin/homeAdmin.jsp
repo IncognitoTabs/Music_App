@@ -78,12 +78,7 @@
                                 Search
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./pages/music-category.html">
-                                <i class="bi bi-music-note-list margin-top"></i>
-                                My Album
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="AddSong">
                                 <i class="bi bi-plus-circle-fill"></i>    
@@ -125,30 +120,20 @@
                     
                 </div>
                 <div class="folder-list col-10">
-
-                    <div class="list-items">
-                        <!-- Name category vs see all music in category-->
-
-                              <c:forEach items="${list}" var="List">
-                              <div class="title-items">
-                            <p>${List.nameSinger}</p>
-                            <a href="#">see all</a>
-                        </div>
                         <div class="row">
                             <!-- music item -->
+                            <c:forEach items="${listAlbum}" var="album">
                             <div class="col-12 col-sm-6 col-md-2 image">
                                 <a href="#" class="content-items">
                                     <div class="img-size">
-                                        <img src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
-                                            alt="">
+                                        <img src="getImageAlbum.jsp?id=${album.id}">
                                     </div>
-                                    <h5>${List.nameAlbum}</h5>
-                                    <p class="name-singer">${List.nameSinger}</p>
+                                    <h5>${album.name}</h5>
+                                <p class="name-singer">${album.idSinger}</p>
                                 </a>
                             </div>
+                            </c:forEach> 
                          </div>
-       								</c:forEach> 
-
                 </div>
             </div>
 

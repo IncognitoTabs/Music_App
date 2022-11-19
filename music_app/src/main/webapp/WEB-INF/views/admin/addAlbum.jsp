@@ -60,12 +60,7 @@
                                 Search
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./pages/music-category.html">
-                                <i class="bi bi-music-note-list margin-top"></i>
-                                My Album
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="AddSong">
                                 <i class="bi bi-plus-circle-fill"></i>    
