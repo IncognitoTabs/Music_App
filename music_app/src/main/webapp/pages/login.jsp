@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Music</title>
 
-    <link rel="stylesheet" href="../assets/css/style-login-reg.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/style-login-reg.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto:wght@300;400;500;700&display=swap">
 </head>
@@ -56,11 +56,11 @@
             </div>
 
             <!-- login with account -->
-            <form action="<%=request.getContextPath()%>/LoginServlet" method="post" class="form-login">
+            <form name="loginForm" action="<%=request.getContextPath()%>/LoginServlet" method="post" class="form-login"">
                 <!-- form login -->
                 <div class="user-address">
                     <p class="form__user">Email address </p>
-                    <input type="text" placeholder="Email address " name="email" class="form__input-user" required>
+                    <input type="email" placeholder="Email address " name="email" class="form__input-user" required>
                 </div>
 
                 <div class="user-password">
@@ -69,14 +69,14 @@
                 </div>
                 <!-- forgot password-->
                 <a href="" class="forgot-password">Forgot your password?</a>
-                <p style="color: red"><%= request.getAttribute("error")!= null? request.getAttribute("error") : "" %></<p>
+                <p style="color: red"> <%=request.getAttribute("error")!= null? request.getAttribute("error") : "" %></p>
                  <div class="zxc">
                 <!-- remember password-->
                 <div class="remember">
                     <input type="checkbox" class="remember__checkbox">
                     <p>Remember me</p>
                 </div>
-                <button class="btn btn--login">Login</button>
+                <button class="btn btn--login" type="submit">Login</button>
             </div>
             </form>
             
