@@ -24,10 +24,9 @@
         <script> 
 function validate()
 { 
-     var fullname = document.form.fullname.value;
-     var email = document.form.email.value;
-     var password = document.form.password.value;
-     var email_confirm= document.form.email_confirm.value;
+     let email = document.forms["registerForm"]["email"].value;
+     let password = document.forms["registerForm"]["password"].value;
+     let email_confirm= document.forms["registerForm"]["email_confirm"].value;
      
      if(password.length<6)
      { 
@@ -63,29 +62,31 @@ function validate()
                 <p class="container__header">Sign up for free to start listening.</p>
                  <!-- create account -->
                  <div class="form">
-                     <form action="<%=request.getContextPath()%>/RegisterServlet" method="POST" class="form-register" onsubmit="return validate()">
+                     <form  name="registerForm" action="<%=request.getContextPath()%>/RegisterServlet" method="POST" class="form-register" onsubmit="return validate()">
                         <!-- form sign up -->
                         <div class="user-address">
                             <p class="form__user">What's your email?</p>
-                            <input type="text" 
+                            <input type="email" 
                                    placeholder="Enter your email." 
                                    class="form__input-user" 
                                    value="<%=user.getEmail()!=null? user.getEmail(): ""%>"
-                                   name="email" required>
+                                   name="email"
+                                   id="email" required>
                         </div>
 
                         <div class="user-email-again">
                             <p class="form__email-again">Confirm your email</p>
-                            <input type="text" 
+                            <input type="email" 
                                    placeholder="Enter your email again." 
                                    class="form__input-email-again" 
                                    value="<%=user.getEmail()!=null? user.getEmail(): ""%>"
-                                   name="email_confirm" required>
+                                   name="email_confirm"
+                                   id="email_confirm" required>
                         </div>
 
                         <div class="user-password">
                             <p class="form__password">Create a password</p>
-                            <input type="password" placeholder="Create a password." class="form__input-password" name="password" required>
+                            <input type="password" id="password" placeholder="Create a password." class="form__input-password" name="password" required>
                         </div>
 
                         <div class="user-profile-name">

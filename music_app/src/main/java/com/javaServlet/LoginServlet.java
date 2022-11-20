@@ -72,29 +72,42 @@ public class LoginServlet extends HttpServlet {
         {
             User loginBean = loginDao.authenticateUser(email,password);
 
-            switch (loginBean.getDecentralization()) {
-                case 1:
-                    {
-                        System.out.println("Admin's Home");
-                        HttpSession session = (HttpSession) request.getSession(); //Creating a session
-                        session.setAttribute("Admin", email); //setting session attribute
-                        request.setAttribute("userName", loginBean.getFull_name());
-                        request.getRequestDispatcher("/admin/home_admin.jsp").forward(request, response);
-                        break;
-                    }
-                case 0:
-                    {
-                        System.out.println("User's Home");
-                        HttpSession session = (HttpSession) request.getSession();
-                        session.setMaxInactiveInterval(10*60);
-                        session.setAttribute("User", email);
-                        request.setAttribute("userName", loginBean.getFull_name());
-                        request.getRequestDispatcher("/admin/home_member.jsp").forward(request, response);
-                        break;
-                    }
-                default:
-                    request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
-                    break;
+            if(loginBean.getFull_name() != null){
+                switch (loginBean.getDecentralization()) {
+                    case 1:
+                        {
+                            System.out.println("Admin's Home");
+                            HttpSession session = (HttpSession) request.getSession(); //Creating a session
+                            session.setAttribute("Admin", email); //setting session attribute
+                            request.setAttribute("userName", loginBean.getFull_name());
+                            request.getRequestDispatcher("/admin/home_admin.jsp").forward(request, response);
+                            break;
+                        }
+                    case 0:
+                        {
+                            System.out.println("User's Home");
+                            HttpSession session = (HttpSession) request.getSession();
+                            session.setMaxInactiveInterval(10*60);
+                            session.setAttribute("User", email);
+                            request.setAttribute("userName", loginBean.getFull_name());
+                            request.getRequestDispatcher("/admin/home_member.jsp").forward(request, response);
+                            break;
+                        }
+                    default:
+                        {
+                            HttpSession session = (HttpSession) request.getSession(); //Creating a session
+                            session.setAttribute("error", true);
+                            request.setAttribute("error", "Email or Password is incorrect! Try again.");
+                            request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+                            break;
+                        }
+                }
+            }
+            else{
+                HttpSession session = (HttpSession) request.getSession(); //Creating a session
+                session.setAttribute("error", true);
+                request.setAttribute("error", "Email or Password is incorrect! Try again.");
+                request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
             }
         }
         catch (IOException e1)

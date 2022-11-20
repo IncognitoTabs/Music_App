@@ -32,7 +32,7 @@ public class LoginDAO {
         String emailDB = "";
         String passwordDB = "";
         String fullnameDB = "";
-        int roleDB = 0;
+        int roleDB = -1;
             try {
                 con = OracleConnection.getOracleConnection();
                 statement = con.createStatement();
@@ -72,17 +72,20 @@ public class LoginDAO {
             try {
                 con = OracleConnection.getOracleConnection();
                 statement = con.createStatement();
-                resultSet = statement.executeQuery("select PASSWORD, NAME_USER, from users where EMAIL = '" +user.getEmail()+"'");
+                resultSet = statement.executeQuery("select PASSWORD, NAME_USER, DECENTRALIZATION from users where EMAIL = '" +user.getEmail()+"'");
                 System.out.println(user.getEmail());
-                while(resultSet.isFirst())
+                while(resultSet.next())
                 {
                     usernameDB = resultSet.getString("NAME_USER");
                     user.setFull_name(usernameDB);
+                    user.setDecentralization(resultSet.getInt("DECENTRALIZATION"));
                     result = true;
+                    System.out.println("Is exist User: "+result);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
+            System.out.println("Is exist User: "+result);
         return result;
     }   
 }
