@@ -1,68 +1,79 @@
 package com.javaServlet.user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 
-import com.javaDTO.Genres;
-import com.javaDTO.Singer;
+import com.google.gson.Gson;
 import com.javaDTO.Song;
-import com.javaDao.GenresDAO;
+
 import com.javaDao.MyUtils;
-import com.javaDao.SingerDAO;
+
 import com.javaDao.SongDAO;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/GetSongUser")
-public class GetSongUser extends HttpServlet{
+@WebServlet(urlPatterns = "/getSongUser")
+public class GetSongUser extends HttpServlet {
+//    private Gson gson = new Gson();
 
-    // Tra ve mp3 cho footer MusicInfo.jsp
-    // Tra về hình ảnh cho UI, 
+    // Tra ve danh sach bai hat cho footer MusicInfo.jsp
+    // Tra về hình ảnh cho UI,
+    
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        resp.setContentType("text/html");
         Connection conn = MyUtils.getStoredConnection(req);
-        //String errorString = null;
+
+         String id_album = req.getParameter("id").trim();
+
+     //   String id_album = "11";
         List<Song> listSong = null;
+        
         try {
-            listSong = SongDAO.querySong(conn);
+            listSong = SongDAO.findSongByIdAlbum(conn, id_album);
         } catch (SQLException e) {
             e.printStackTrace();
-            //errorString = e.getMessage();
         }
-        List<Singer> listSinger = new ArrayList<Singer>();
-        for (int i=0; i<listSong.size(); i++) {
-            Singer singer= null;
-          try {
-              singer = SingerDAO.findSinger(conn,listSong.get(i).getIdSinger());
-          } catch (SQLException e) {
-              e.printStackTrace();
-//              errorString = e.getMessage();
-          }
-          listSong.get(i).setIdSinger(singer.getName());
-          Genres genres= null;
-        try {
-            genres = GenresDAO.findgenres(conn,listSong.get(i).getIdGenre());
-        } catch (SQLException e) {
-            e.printStackTrace();
-//            errorString = e.getMessage();
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("application/text");
+        resp.setCharacterEncoding("UTF-8");
+         String songJsonString = "";
+         int count = 0;
+         int sizelist  = listSong.size();
+        
+     //     JSONArray jsonarr = new JSONArray();
+           System.out.println("Song getting");
+        for (Song song : listSong) {
+            System.out.println(song.toString());
+            songJsonString +=song.toString();
+            count ++;
+            if(count < sizelist) {
+                 songJsonString +=",";
+            }
+           // jsonarr.put(song);
+           
         }
-        listSong.get(i).setIdGenre(genres.getName());
-        }
-        //request.setAttribute("errorString", errorString);
-        req.setAttribute("songList", listSong);
-//       Forward sang /WEB-INF/views/productListView.jsp
-        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/songManager.jsp");
-        dispatcher.forward(req, resp);
+      
+        Song song = new Song();
+       // Gson gson = new Gson();
+        
+        // String songJsonString = new Gson().toJson(listSong);
+       System.out.println("Song getting");
+//       System.out.println(jsonarr);
+        out.print("["+songJsonString+"]");
+        
+        out.print(song.toJson());
+//        out.print("{adadad: gfsfgsfsdf}");
+//       out.print(jsonarr);
     }
-    
+
 }

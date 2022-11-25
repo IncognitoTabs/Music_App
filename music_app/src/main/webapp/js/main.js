@@ -255,6 +255,7 @@ function songItemClick(e){
 
 
 const btnNext = document.querySelector('.next-music')
+
 btnNext.addEventListener('click', () => {
     const songItem = document.querySelector(`.list-item.active`)
     // console.log(songItem)

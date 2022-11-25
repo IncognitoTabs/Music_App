@@ -17,7 +17,11 @@
 	rel="stylesheet"
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+	integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="assets/css/user.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <script src="https://kit.fontawesome.com/8e44eaf2c8.js"
 	crossorigin="anonymous"></script>
@@ -26,7 +30,7 @@
 	type="image/x-icon" />
 
 </head>
-<body>
+<body onload="readJSON()">
 
 	<jsp:include page="View/TopBar.jsp"></jsp:include>
 	<div class="container-fluid">
@@ -38,10 +42,10 @@
 				<div class="container__info col-10">
 
 					<div class="header-info ">
-						<img src="../image/den2.jpg" class="header-info__img">
-						<p class="header-info__name">Đen</p>
-						<p class="header-info__amount-listener">569,225 monthly
-							listeners</p>
+						<p id="id_album" hide>${id_album}</p>
+						<img src="${image_album}" class="header-info__img" >
+						<p class="header-info__name">${name_album}</p>
+						<p class="header-info__amount-listener"></p>
 					</div>
 
 					<div class="container__info-list">
@@ -60,9 +64,7 @@
 								<div class="list__dateAdd">
 									<p class="text-note-list">DATE ADDED</p>
 								</div>
-								<div class="list__time">
-									<i class="fa-regular fa-clock text-note-list"></i>
-								</div>
+
 							</div>
 						</div>
 
@@ -82,7 +84,7 @@
 
 	<jsp:include page="View/Footer.jsp"></jsp:include>
 
-	<script src="js/main.js"></script>
+	<script src="js/userjs.js"></script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

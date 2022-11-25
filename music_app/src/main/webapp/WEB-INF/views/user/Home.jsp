@@ -46,7 +46,7 @@
 						<div class="row">
 							<!-- music item hiển thị 6 mục trên 1 hàng-->
 							<div class="col-12 col-sm-6 col-md-2 image">
-								<a href="./MusicInfoUser" class="content-items">
+								<a href="./MusicInfoUser?id_album=01" class="content-items">
 									<div class="img-size">
 										<img
 											src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
