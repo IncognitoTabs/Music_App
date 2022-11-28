@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Confirm User</title>
+        <title>Sign up - Music</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,30 +21,41 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto:wght@300;400;500;700&display=swap"
             rel="stylesheet">
+        <script> 
+function validate()
+{ 
+     var fullname = document.form.fullname.value;
+     var email = document.form.email.value;
+     var password = document.form.password.value;
+     var email_confirm= document.form.email_confirm.value;
+     
+     if(password.length<6)
+     { 
+        alert("Password must be at least 6 characters long."); 
+        return false; 
+     } 
+     else if (email !== email_confirm)
+     { 
+        alert("Confirm Email should match with the Email"); 
+        return false; 
+     } 
+ } 
+</script>
     </head>
     <body>
-<<<<<<< HEAD
         <%  
-            User user = new User(); 
+            User user; 
             String access_token=(String)request.getParameter("access_token");
+            String code = request.getParameter("code");
+            
             if(access_token != null){
                 user = new FB_Profile().call_me(access_token);
-            }else{
-                String code = request.getParameter("code");
+            }else if(code != null){
                 user = new GG_Profile().call_me(code);
+            }else{
+                user = new User();
             }
         %>
-=======
-        <%String access_token=(String)request.getParameter("access_token");
-            FB_Profile profile=new FB_Profile();
-            User user= profile.call_me(access_token);
-            %>
-<!--            Name : <%=user.getUser_name() %><br>
-            Email : <%=user.getEmail() %><br>
-            id : <%=user.getId() %><br>
-            Profile Picture : <%=user.getAvatar() %><br>
-            <img src="<%=user.getAvatar() %>"></img>-->
->>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
         <div class="signup">
             <div class="logo">
                 <p>
@@ -57,14 +68,14 @@
                 <p class="container__header">Sign up for free to start listening.</p>
                  <!-- create account -->
                  <div class="form">
-                     <form action="" method="POST" class="form-register">
+                     <form action="<%=request.getContextPath()%>/RegisterServlet" method="POST" class="form-register" onsubmit="return validate()">
                         <!-- form sign up -->
                         <div class="user-address">
                             <p class="form__user">What's your email?</p>
                             <input type="text" 
                                    placeholder="Enter your email." 
                                    class="form__input-user" 
-                                   value="<%=user.getEmail() %>"
+                                   value="<%=user.getEmail()!=null? user.getEmail(): ""%>"
                                    name="email" required>
                         </div>
 
@@ -73,11 +84,7 @@
                             <input type="text" 
                                    placeholder="Enter your email again." 
                                    class="form__input-email-again" 
-<<<<<<< HEAD
-                                   value="<%=user.getEmail()%>"
-=======
-                                   value="<%=user.getEmail() %>"
->>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
+                                   value="<%=user.getEmail()!=null? user.getEmail(): ""%>"
                                    name="email_confirm" required>
                         </div>
 
@@ -91,16 +98,12 @@
                             <input type="text" 
                                    placeholder="Enter a profile name." 
                                    class="form__input-profile-name" 
-<<<<<<< HEAD
-                                   value="<%=user.getFull_name()%>"
-=======
-                                   value="<%=user.getUser_name() %>"
->>>>>>> parent of 6db78c7 (Merge branch 'main' into NguyenHoangHiep)
-                                   name="username" required>
+                                   value="<%=user.getFull_name()!=null? user.getFull_name(): ""%>"
+                                   name="fullname" required>
                             <p class="helpText">This appears on your profile.</p>
                         </div>
                         <div class="signup-btn">
-                            <button class="btn btn--signup">Sign up</button>
+                            <button type="submit" class="btn btn--signup">Sign up</button>
                         </div>
                     </form>
 
@@ -113,4 +116,3 @@
         </div>
     </body>
 </html>
-
