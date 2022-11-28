@@ -13,7 +13,7 @@ import com.javaDTO.Song;
 
 public class SongDAO {
     public static List<Song> querySong(Connection conn) throws SQLException {
-        String sql = "Select a.id_song, a.name_song,a.id_singer,a.id_album,a.id_genre from song a";
+        String sql = "Select a.id_song, a.name_song,a.id_singer,a.id_album,a.id_genre from song a order by to_number(a.id_song)";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -85,6 +85,7 @@ public class SongDAO {
         }
         return null;
     }
+
     public static List<Song>  findSongAlbum(Connection conn, String id) throws SQLException {
         String sql = "Select a.id_song, a.name_song,a.id_singer,a.id_album,a.id_genre from song a where a.id_album=?";
         List<Song> list = new ArrayList<Song>();
@@ -93,13 +94,38 @@ public class SongDAO {
         ResultSet rs = pstm.executeQuery();
 
         while (rs.next()) {
+            String idSong=rs.getString("id_song");
             String  name= rs.getString("name_song");
             String idSinger = rs.getString("id_singer");
             String idAlbum = rs.getString("id_album");
             String idGenre = rs.getString("id_genre");
             Song song = new Song();
-            song.setId(id);
+            song.setId(idSong);
             song.setName(name);
+            song.setIdSinger(idSinger);
+            song.setIdAlbum(idAlbum);
+            song.setIdGenre(idGenre);
+            list.add(song);
+        }
+        return list;
+    }
+
+    public static List<Song>  findSongName(Connection conn, String name) throws SQLException {
+        String sql = "Select a.id_song, a.name_song,a.id_singer,a.id_album,a.id_genre from song a where a.name_song like ?";
+        List<Song> list = new ArrayList<Song>();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, name);
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            String idSong=rs.getString("id_song");
+            String  nameSong= rs.getString("name_song");
+            String idSinger = rs.getString("id_singer");
+            String idAlbum = rs.getString("id_album");
+            String idGenre = rs.getString("id_genre");
+            Song song = new Song();
+            song.setId(idSong);
+            song.setName(nameSong);
             song.setIdSinger(idSinger);
             song.setIdAlbum(idAlbum);
             song.setIdGenre(idGenre);

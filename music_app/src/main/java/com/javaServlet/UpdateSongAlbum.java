@@ -9,10 +9,12 @@ import java.util.List;
 import com.javaDTO.Album;
 import com.javaDTO.Genres;
 import com.javaDTO.Singer;
-import com.javaDao.MyUtils;
-import com.javaDao.SingerDAO;
+import com.javaDTO.Song;
 import com.javaDao.AlbumDAO;
 import com.javaDao.GenresDAO;
+import com.javaDao.MyUtils;
+import com.javaDao.SingerDAO;
+import com.javaDao.SongDAO;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -23,21 +25,43 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 @MultipartConfig(maxFileSize = 16177216)//1.5mb
-@WebServlet(urlPatterns={"/AddAlbum"})
-public class AddAlbum extends HttpServlet {
-
+@WebServlet(urlPatterns={"/UpdateSongAlbum"})
+public class UpdateSongAlbum extends HttpServlet{
+    private static String id =null;
     private static final long serialVersionUID = 1L;
-    public AddAlbum () {
-    super();
-}
+    public UpdateSongAlbum() {
+        super();
+    }
+
+    // Hiển thị trang sửa sản phẩm.
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
-        //String errorString = null;
+
+        id  = (String) request.getParameter("id");
+
+        Song song= null;
+
+//        String errorString = nSull;
+
+        try {
+            song = SongDAO.findSong(conn, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+//            errorString = e.getMessage();
+        }
+
         List<Genres> listGenre = null;
         try {
             listGenre = GenresDAO.querygenres(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //errorString = e.getMessage();
+        }
+        List<Album> listAlbum = null;
+        try {
+            listAlbum = AlbumDAO.queryAlbum(conn);
         } catch (SQLException e) {
             e.printStackTrace();
             //errorString = e.getMessage();
@@ -50,35 +74,42 @@ public class AddAlbum extends HttpServlet {
             //errorString = e.getMessage();
         }
         //request.setAttribute("errorString", errorString);
+        request.setAttribute("albumList", listAlbum);
         request.setAttribute("genreList", listGenre);
         request.setAttribute("singerList", listSinger);
-//       Forward sang /WEB-INF/views/productListView.jsp
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/addAlbum.jsp");
+        request.setAttribute("song", song);
+
+        RequestDispatcher dispatcher = request.getServletContext()
+                .getRequestDispatcher("/WEB-INF/views/admin/updateSongAlbum.jsp");
         dispatcher.forward(request, response);
+
     }
+
+    // Sau khi người dùng sửa đổi thông tin sản phẩm, và nhấn Submit.
+    // Phương thức này sẽ được thực thi.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
-        String name = (String) request.getParameter("AlbumName");
+        String name = (String) request.getParameter("SongName");
         String idSinger = (String) request.getParameter("NameSinger");
-        String genreAlbum = (String) request.getParameter("GenreAlbum");
-        Part part = request.getPart("ImageAlbum");
-        Album album = new Album(name,idSinger,genreAlbum);
-        if (!name.equals("")  ) {
+        Part part = request.getPart("ImageSong");
+        Part part1 = request.getPart("DataSong");
+        String genreSong = (String) request.getParameter("NameGenre");
+        String idAlbum = (String) request.getParameter("NameAlbum");
+ 
+        Song song = new Song(id,name,idSinger,idAlbum,genreSong);
+        if (part != null ) {
             try {
                 InputStream is = part.getInputStream();
-                AlbumDAO.addAlbum(conn, album,is);
-                response.sendRedirect(request.getContextPath() + "/GetAlbum");
+                InputStream is1 = part1.getInputStream();
+                SongDAO.updateSong(conn, song,is,is1);
+                id=null;
+                response.sendRedirect(request.getContextPath() + "/GetSongAlbum?id="+song.getIdAlbum());
             } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             }
-        }
-        else {
-            String errorString  = "Emty album name!"; 
-            request.setAttribute("errorString", errorString);
-            doGet(request, response);
-        }
+        }     
     }
 }

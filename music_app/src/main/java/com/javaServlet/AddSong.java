@@ -78,7 +78,9 @@ public class AddSong extends HttpServlet{
         String idAlbum = (String) request.getParameter("NameAlbum");
  
         Song song = new Song(name,idSinger,idAlbum,genreSong);
-        if (part != null ) {
+
+        
+        if (!name.equals("") ) {
             try {
                 InputStream is = part.getInputStream();
                 InputStream is1 = part1.getInputStream();
@@ -88,6 +90,11 @@ public class AddSong extends HttpServlet{
             // TODO Auto-generated catch block
             e.printStackTrace();
             }
+        }
+        else {
+            String errorString  = "Emty song name!"; 
+            request.setAttribute("errorString", errorString);
+            doGet(request, response);
         }
     }
 }

@@ -39,7 +39,7 @@ public class AddGenres extends HttpServlet{
         Connection conn = MyUtils.getStoredConnection(request);
         String name = (String) request.getParameter("GenresName");
         Genres genres= new Genres(name);
-        if (name != null ) {
+        if (!name.equals("") ) {
             try {
                 GenresDAO.addGenres(conn, genres);
                 response.sendRedirect(request.getContextPath() + "/GetGenres");
@@ -47,6 +47,13 @@ public class AddGenres extends HttpServlet{
             // TODO Auto-generated catch block
             e.printStackTrace();
             }
+        }
+        else {
+            String errorString  = "Emty category name!"; 
+            request.setAttribute("errorString", errorString);
+            RequestDispatcher dispatcher = request.getServletContext()
+                    .getRequestDispatcher("/WEB-INF/views/admin/addGenres.jsp");
+            dispatcher.forward(request, response);
         }
     }
 }

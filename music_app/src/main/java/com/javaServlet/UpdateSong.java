@@ -24,6 +24,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import oracle.security.o3logon.a;
 @MultipartConfig(maxFileSize = 16177216)//1.5mb
 @WebServlet(urlPatterns={"/UpdateSong"})
 public class UpdateSong extends HttpServlet{
@@ -73,6 +74,22 @@ public class UpdateSong extends HttpServlet{
             e.printStackTrace();
             //errorString = e.getMessage();
         }
+        Album album=null;
+        Genres genres=null;
+        try {
+            album=AlbumDAO.findAlbum(conn, song.getIdAlbum());
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            genres=GenresDAO.findgenres(conn,song.getIdGenre());
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        song.setIdAlbum(album.getName());
+        song.setIdGenre(genres.getName());
         //request.setAttribute("errorString", errorString);
         request.setAttribute("albumList", listAlbum);
         request.setAttribute("genreList", listGenre);

@@ -106,7 +106,7 @@
                     <div class="list-items">
                         <!-- Name category vs see all music in  ccategory-->
                         <div class="title-items">
-                            <p>Music Manager</p>
+                            <p>Album Manager</p>
                           
                             
                         </div>

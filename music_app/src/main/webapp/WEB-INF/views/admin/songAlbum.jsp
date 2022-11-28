@@ -17,6 +17,7 @@
    
 
     <title>Music</title>
+    
 </head>
 
 <body>
@@ -30,26 +31,7 @@
                         <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-left"></i></a>
                         <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-right"></i></a>
                     </div>
-                    <!-- Dropdownn -->
-          
-                   <div class="dropdown">
-                       <button class="btn btn-secondary dropdown-toggle" type="button" 
-                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Admin 
-                        </button>
-                         
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                         
-                            <li><a class="dropdown-item" href="AddSong">Add Music</a></li>
-                            <li> <a class="dropdown-item" href="AddAlbum">Add Album</a></li>
-                            <li> <a class="dropdown-item" href="AddSinger">Add Singer</a></li>
-                            <li><a class="dropdown-item" href="GetSong">Song Manager</a></li>
-                            <li> <a class="dropdown-item" href="GetAlbum">Album Manager</a></li>
-                            <li> <a class="dropdown-item" href="#">Log Out</a></li>
-                          </ul>
-                        
-                        </div>
-                          
+                  
                     
                 </div>
             </nav>
@@ -120,20 +102,46 @@
                     
                 </div>
                 <div class="folder-list col-10">
-                        <div class="row">
-                            <!-- music item -->
-                            <c:forEach items="${listAlbum}" var="album">
-                            <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="GetSongAlbum?id=${album.id}" class="content-items">
-                                    <div class="img-size">
-                                        <img src="getImageAlbum.jsp?id=${album.id}">
-                                    </div>
-                                    <h5>${album.name}</h5>
-                                <p class="name-singer">${album.idSinger}</p>
-                                </a>
-                            </div>
-                            </c:forEach> 
-                         </div>
+
+                    <div class="list-items">
+                        <!-- Name category vs see alll music in category-->
+                        <div class="title-items">
+                            <p>Album ${album.name} </p>
+                          
+                            
+                        </div>
+
+                        </div>
+                        <table class="table table-dark">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Music Name</th>
+                                <th scope="col">Singer</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Act</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                               <c:forEach items="${songList}" var="song" >
+		                              <tr>
+		                                <th scope="row">${song.id}</th>
+		                                <td >${song.name} </td>   
+		                           		<td >${song.idSinger}</td> 
+		                           		<td >${song.idGenre} </td> 
+		                                <td>
+		                                    <a href="UpdateSongAlbum?id=${song.id}"
+		                                    class="btn btn-primary btn-lg active btnUpdate" role="button" aria-pressed="true">Update</a>
+		                                    <a href="DeleteSongAlbum?id=${song.id}"  class="btn btn-danger" role="button" aria-pressed="true">Danger</a>  </td>
+       								</c:forEach> 
+                            </tbody>
+                          </table>
+                            
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
 

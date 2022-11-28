@@ -47,7 +47,7 @@ public class GetSong extends HttpServlet {
             e.printStackTrace();
             //errorString = e.getMessage();
         }
-        List<Singer> listSinger = new ArrayList<Singer>();
+
         for (int i=0; i<listSong.size(); i++) {
             Singer singer= null;
           try {

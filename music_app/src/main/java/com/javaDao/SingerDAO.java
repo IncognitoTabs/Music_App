@@ -14,7 +14,7 @@ import com.javaDTO.Singer;
 
 public class SingerDAO {
 	public static List<Singer> querySinger(Connection conn) throws SQLException {
-		String sql = "Select a.id_singer, a.name_singer from singer a";
+		String sql = "Select a.id_singer, a.name_singer from singer a order by to_number(a.id_singer)";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 

@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +18,7 @@
 
     <title>Music</title>
 </head>
-
+<form action='/music_app/Search' method='post' >
 <body>
     <div class="header">
         <div class="col-2"></div>
@@ -49,7 +49,7 @@
                         
                         ">
 
-                         <input type="text" placeholder="Hôm nay bạn muốn nghe gì?" style = "    padding-bottom: 1px;
+                         <input type="text" name='NameSearch' value='${name}' placeholder="Hôm nay bạn muốn nghe gì?" style = "    padding-bottom: 1px;
                          padding-top: 2px;
                          margin-left: 100px;
                          width: 828px;
@@ -181,61 +181,22 @@
                 <div class="folder-list col-10">
 
                     <div class="list-items">
-                        <!-- Name category vs see all music in category-->
-                        <div class="title-items">
-                            <p>Mr Siro</p>
-                            <a href="#">see all</a>
-                        </div>
+
                         <div class="row">
                             <!-- music item -->
+                            <c:forEach items="${listSong}" var="song">
                             <div class="col-12 col-sm-6 col-md-2 image">
                                 <a href="#" class="content-items">
                                     <div class="img-size">
-                                        <img src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
-                                            alt="">
+                                        <img src="getImageSong.jsp?id=${song.id}">
                                     </div>
-                                    <h5>Khóc cùng em</h5>
-                                    <p class="name-singer">Mr Siro</p>
+                                    <h5>${song.name}</h5>
+                                <p class="name-singer">${song.idSinger}</p>
                                 </a>
                             </div>
-                          <!-- row 2 -->
-                           
-                    <div class="list-items">
-                        <div class="title-items">
-                            <p>Mr Siro</p>
-                            <a href="#">see all</a>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="#" class="content-items">
-                                    <div class="img-size">
-                                        <img src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
-                                            alt="">
-                                    </div>
-                                    <h5>Khóc cùng em</h5>
-                                    <p class="name-singer">Mr Siro</p>
-                                </a>
-                            </div>
-                           
-                            <!-- row 3 -->
-                    <div class="list-items">
-                        <div class="title-items">
-                            <p>Mr Siro</p>
-                            <a href="#">see all</a>
-                        </div>
-                        <div class="row">
-                            
-                            <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="#" class="content-items">
-                                    <div class="img-size">
-                                        <img src="https://th.bing.com/th/id/OIP.FhozvTv1wkpmWwlCoD4qYQHaEK?w=299&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7"
-                                            alt="">
-                                    </div>
-                                    <h5>Khóc cùng em</h5>
-                                    <p class="name-singer">Mr Siro</p>
-                                </a>
-                            </div>
-                           
+                            </c:forEach> 
+                         </div>
+                          <!-- row 2 -->                         
                         </div>
                     </div>
                 </div>
@@ -250,5 +211,5 @@
         crossorigin="anonymous"></script>
 
 </body>
-
+</form>
 </html>

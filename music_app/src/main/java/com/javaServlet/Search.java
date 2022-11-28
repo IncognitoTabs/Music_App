@@ -22,9 +22,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns={"/Search"})
 public class Search extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
-
     public  Search() {
         super();
     }
@@ -32,44 +30,41 @@ public class Search extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-//        Connection conn = MyUtils.getStoredConnection(request);
-//        //String errorString = null;
-//        List<Song> listSong = null;
-//        try {
-//            listSong = SongDAO.querySong(conn);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            //errorString = e.getMessage();
-//        }
-//        List<Singer> listSinger = new ArrayList<Singer>();
-//        for (int i=0; i<listSong.size(); i++) {
-//            Singer singer= null;
-//          try {
-//              singer = SingerDAO.findSinger(conn,listSong.get(i).getIdSinger());
-//          } catch (SQLException e) {
-//              e.printStackTrace();
-////              errorString = e.getMessage();
-//          }
-//          listSong.get(i).setIdSinger(singer.getName());
-//          Genres genres= null;
-//        try {
-//            genres = GenresDAO.findgenres(conn,listSong.get(i).getIdGenre());
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-////            errorString = e.getMessage();
-//        }
-//        listSong.get(i).setIdGenre(genres.getName());
-//        }
-//        //request.setAttribute("errorString", errorString);
-//        request.setAttribute("songList", listSong);
-////       Forward sang /WEB-INF/views/productListView.jsp
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/search.jsp");
+        RequestDispatcher dispatcher = request.getServletContext()
+                .getRequestDispatcher("/WEB-INF/views/admin/search.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
-    }
+        List<Song>listSong=null;
+        String name=null;
+        name  = (String) request.getParameter("NameSearch");
+        Connection conn = MyUtils.getStoredConnection(request);
+        try {
+            listSong=SongDAO.findSongName(conn, name);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        for(int i=0; i<listSong.size(); i++) {
+            Singer singer=null;
+            try {
+                singer=SingerDAO.findSinger(conn, listSong.get(i).getIdSinger());
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            if(singer!=null) {
+                listSong.get(i).setIdSinger(singer.getName());
+            }
+            
+        }
+        request.setAttribute("listSong",listSong );
+        request.setAttribute("name",name );
+        RequestDispatcher dispatcher = request.getServletContext()
+                .getRequestDispatcher("/WEB-INF/views/admin/search.jsp");
+        dispatcher.forward(request, response);
+    }  
 }

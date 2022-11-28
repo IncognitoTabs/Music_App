@@ -13,7 +13,7 @@ import com.javaDTO.Album;
 
 public class AlbumDAO {
     public static List<Album> queryAlbum(Connection conn) throws SQLException {
-        String sql = "Select a.id_album, a.name_albums,a.id_singer,a.genre_album from album a";
+        String sql = "Select a.id_album, a.name_albums,a.id_singer,a.genre_album from album a order by a.id_album";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
 

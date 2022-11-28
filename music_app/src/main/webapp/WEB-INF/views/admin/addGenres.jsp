@@ -115,6 +115,8 @@
                         <div class="row">
                             <div class="addmusic">
                                 <p style="color: white;" >Name Category
+                                                   <br>
+                                <p style="color: red;">${errorString}</p>
                                     <div class="input-group mb-3">
                                         <input type="text" name ='GenresName'class="form-control" placeholder="Input name Category here!"  >
                                        

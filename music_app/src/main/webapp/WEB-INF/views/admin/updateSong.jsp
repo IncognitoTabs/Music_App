@@ -127,6 +127,7 @@
                                 <p style="color: white;" >Singer </p>
                                 <div class="input-group mb-3">
                                     <select name='NameSinger' class="custom-select" id="inputGroupSelect02">
+
                                      <c:forEach items="${singerList}" var="singer">
                                   <option value="${singer.id}">${singer.name}</option>
        							</c:forEach> 

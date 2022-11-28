@@ -116,10 +116,12 @@
                         <div class="row">
                             <div class="addmusic">
                                 <p style="color: white;" > Singer Name
+                                <br>
+                                <p style="color: red;">${errorString}</p>
                                     <div class="input-group mb-3">
-                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >
-                                       
+                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >  
                                       </div>
+                                      
                                 </p>
                             </div>
                            

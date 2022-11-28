@@ -3,30 +3,28 @@ package com.javaServlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.javaDTO.Album;
-import com.javaDTO.Genres;
 import com.javaDTO.Singer;
-import com.javaDTO.SingerAlbum;
 import com.javaDao.AlbumDAO;
-import com.javaDao.GenresDAO;
 import com.javaDao.MyUtils;
 import com.javaDao.SingerDAO;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-@WebServlet(urlPatterns = { "/HomeAdmin" })
-public class Admin extends  HttpServlet{
+@MultipartConfig(maxFileSize = 16177216)//1.5mb
+@WebServlet(urlPatterns={"/HomeAdmin"})
+public class HomeAdmin extends HttpServlet{
 
     private static final long serialVersionUID = 1L;
 
-    public Admin() {
+    public HomeAdmin() {
         super();
     }
     @Override
