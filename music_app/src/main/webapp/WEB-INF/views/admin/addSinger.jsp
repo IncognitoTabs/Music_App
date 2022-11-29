@@ -19,6 +19,7 @@
     <title>Music</title>
     
 </head>
+
 <form action='/music_app/AddSinger' method='post' enctype='multipart/form-data'>
 <body>
     <div class="header">
@@ -92,7 +93,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="LogoutServlet">
                                 <i class="bi bi-box-arrow-left"></i>    
                                 Log Out 
                             </a>

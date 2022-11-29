@@ -169,7 +169,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="LogoutServlet">
                                 <i class="bi bi-box-arrow-left"></i>    
                                 Log Out 
                             </a>
@@ -186,7 +186,7 @@
                             <!-- music item -->
                             <c:forEach items="${listSong}" var="song">
                             <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="#" class="content-items">
+                                <a href="PlaySong?id=${song.id}" class="content-items">
                                     <div class="img-size">
                                         <img src="getImageSong.jsp?id=${song.id}">
                                     </div>

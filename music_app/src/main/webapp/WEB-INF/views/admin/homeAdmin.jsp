@@ -38,8 +38,7 @@
                             Admin 
                         </button>
                          
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                         
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">                         
                             <li><a class="dropdown-item" href="AddSong">Add Music</a></li>
                             <li> <a class="dropdown-item" href="AddAlbum">Add Album</a></li>
                             <li> <a class="dropdown-item" href="AddSinger">Add Singer</a></li>

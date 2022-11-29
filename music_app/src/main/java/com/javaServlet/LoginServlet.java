@@ -5,10 +5,19 @@
  */
 package com.javaServlet;
 
+import com.javaDTO.Album;
+import com.javaDTO.Singer;
+import com.javaDao.AlbumDAO;
 import com.javaDao.LoginDAO;
+import com.javaDao.MyUtils;
+import com.javaDao.SingerDAO;
 import com.oracle.music_app.model.User;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -75,10 +84,35 @@ public class LoginServlet extends HttpServlet {
             switch (loginBean.getDecentralization()) {
                 case 1:
                     {
+                        
+                        Connection conn = MyUtils.getStoredConnection(request);
+
+                        List<Album> listAlbum = null;
+                        try {
+                            listAlbum=AlbumDAO.queryAlbum(conn);
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        for(int i=0; i<listAlbum.size();i++) {
+                            Singer singer=null;
+                            try {
+                                singer=SingerDAO.findSinger(conn, listAlbum.get(i).getIdSinger());
+                            } catch (SQLException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                            if(singer!=null) {
+                                listAlbum.get(i).setIdSinger(singer.getName());
+                            }
+                        }
+                        
+
                         System.out.println("Admin's Home");
                         HttpSession session = (HttpSession) request.getSession(); //Creating a session
                         session.setAttribute("Admin", email); //setting session attribute
                         request.setAttribute("userName", loginBean.getFull_name());
+                        request.setAttribute("listAlbum", listAlbum);
                         request.getRequestDispatcher("/admin/home_admin.jsp").forward(request, response);
                         break;
                     }
