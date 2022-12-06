@@ -40,14 +40,22 @@ public class AddSinger extends HttpServlet{
 		String name = (String) request.getParameter("SingerName");
 		Part part = request.getPart("ImageSinger");
 		Singer singer = new Singer(name);
-        if (part != null ) {
+        if (!name.equals("") ) {
             try {
                 InputStream is = part.getInputStream();
-    			SingerDAO.insertProduct(conn, singer,is);
+    			SingerDAO.addSinger(conn, singer,is);
+    			response.sendRedirect(request.getContextPath() + "/GetSinger");
             } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
             }
+        }
+        else {
+            String errorString  = "Emty singer name!"; 
+            request.setAttribute("errorString", errorString);
+            RequestDispatcher dispatcher = request.getServletContext()
+                    .getRequestDispatcher("/WEB-INF/views/admin/addSinger.jsp");
+            dispatcher.forward(request, response);
         }
 	}
 }

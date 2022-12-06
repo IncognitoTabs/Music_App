@@ -7,13 +7,22 @@ package com.javaServlet;
 
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.javaDTO.Album;
+import com.javaDTO.Singer;
+import com.javaDao.AlbumDAO;
+import com.javaDao.MyUtils;
+import com.javaDao.SingerDAO;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -46,7 +55,6 @@ public class LogoutServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final long serialVersionUID = 1L;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -54,9 +62,53 @@ public class LogoutServlet extends HttpServlet {
  
         if(session!=null) //If session is not null
         {
-            session.invalidate(); //removes all session attributes bound to the session
+            session.invalidate(); 
+            Connection conn = MyUtils.getStoredConnection(request);
+            //String errorString = null;
+//            List<Singer> listSinger = null;
+//            try {
+//                listSinger = SingerDAO.querySinger(conn);
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//                //errorString = e.getMessage();
+//            }
+            List<Album> listAlbum = null;
+            try {
+                listAlbum=AlbumDAO.queryAlbum(conn);
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            for(int i=0; i<listAlbum.size();i++) {
+                Singer singer=null;
+                try {
+                    singer=SingerDAO.findSinger(conn, listAlbum.get(i).getIdSinger());
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                if(singer!=null) {
+                    listAlbum.get(i).setIdSinger(singer.getName());
+                }
+            }
+//            List<SingerAlbum> list = new ArrayList<SingerAlbum>();
+//            for(int i=0; i<listSinger.size(); i++) {
+//                Album album= null;
+//                try {
+//                    album=AlbumDAO.findAlbum(conn,listSinger.get(i).getId());
+//                } catch (SQLException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//                if(album!=null) {
+//                    SingerAlbum singerAlbum = new SingerAlbum(album.getIdSinger(),listSinger.get(i).getName(),album.getId(),album.getName());     
+//                    list.add(singerAlbum);
+//                }
+//            }
+            //removes all session attributes bound to the session
             request.setAttribute("errMessage", "You have logged out successfully");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/login.jsp");
+            request.setAttribute("listAlbum", listAlbum);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
             requestDispatcher.forward(request, response);
             System.out.println("Logged out");
         }

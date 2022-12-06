@@ -1,8 +1,3 @@
-<%-- 
-    Document   : ConfirmUser
-    Created on : Sep 25, 2022, 4:38:31 PM
-    Author     : hoang
---%>
 <%@page import="com.oracle.music_app.login.GG_Profile"%>
 <%@page import="com.oracle.music_app.model.User" %>
 <%@page import="com.oracle.music_app.login.FB_Profile"%>
@@ -45,13 +40,8 @@ function validate()
     <body>
         <%  
             User user; 
-            String access_token=(String)request.getParameter("access_token");
-            String code = request.getParameter("code");
-            
-            if(access_token != null){
-                user = new FB_Profile().call_me(access_token);
-            }else if(code != null){
-                user = new GG_Profile().call_me(code);
+            if((request.getSession(false).getAttribute("RegisterUser")!= null) ){
+                user = (User) request.getSession(false).getAttribute("RegisterUser");
             }else{
                 user = new User();
             }
@@ -109,11 +99,10 @@ function validate()
 
                     <p class="login">
                         Have an account?
-                        <a href="./login.html">Login</a>.
+                        <a href="./login.jsp">Login</a>.
                     </p>
                 </div>
             </div>
         </div>
     </body>
 </html>
-

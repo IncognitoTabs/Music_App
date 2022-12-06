@@ -1,5 +1,11 @@
+<%-- 
+    Document   : home_admin
+    Created on : Nov 6, 2022, 2:20:53 PM
+    Author     : hoang
+--%>
 
-<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,12 +51,12 @@ if((request.getSession(false).getAttribute("Admin")== null) )
                          
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                          
-                            <li><a class="dropdown-item" href="./AddMusic.html">Add Music</a></li>
-                            <li> <a class="dropdown-item" href="./AddAlbum.html">Add Album</a></li>
-                            <li> <a class="dropdown-item" href="./AddSingle.html">Add Singer</a></li>
-                            <li><a class="dropdown-item" href="#">Song Manager</a></li>
-                            <li> <a class="dropdown-item" href="#">Album Manager</a></li>
-                            <li> <a class="dropdown-item" href="<%=request.getContextPath()%>/LogoutServlet">Log Out</a></li>
+                            <li><a class="dropdown-item" href="AddSong">Add Music</a></li>
+                            <li> <a class="dropdown-item" href="AddAlbum">Add Album</a></li>
+                            <li> <a class="dropdown-item" href="AddSinger">Add Singer</a></li>
+                            <li><a class="dropdown-item" href="GetSong">Song Manager</a></li>
+                            <li> <a class="dropdown-item" href="GetAlbum">Album Manager</a></li>
+                            <li> <a class="dropdown-item" href="LogoutServlet">Log Out</a></li>
                           </ul>
                         
                         </div>
@@ -70,57 +76,52 @@ if((request.getSession(false).getAttribute("Admin")== null) )
                         </div>
                     </div>
                     <!-- nemu bar -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="./home_admin.html">
+                            <a class="nav-link" href="HomeAdmin">
                                 <i class="fa-solid fa-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./SearchAdmin.html">
+                            <a class="nav-link" href="Search">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="./pages/music-category.html">
-                                <i class="bi bi-music-note-list margin-top"></i>
-                                My Album
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./AddMusic.html">
+                            <a class="nav-link" href="AddSong">
                                 <i class="bi bi-plus-circle-fill"></i>    
                                 Add Music
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="AddAlbum.html">
+                            <a class="nav-link" href="AddAlbum">
                                 <i class="bi bi-journal-plus"></i>    
                                 Add Album
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./AddSingle.html">
+                            <a class="nav-link" href="AddSinger">
                                 <i class="bi bi-person-plus-fill"></i>    
                                 Add Singer
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./MusicManager.html">
+                            <a class="nav-link" href="GetSong">
                                 <i class="bi bi-file-earmark-music-fill"></i>    
                                 Song Manager
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./AlbumManager.html">
+                            <a class="nav-link" href="GetAlbum">
                                 <i class="bi bi-journal-album"></i>    
                                 Album Manager
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="LogoutServlet">
                                 <i class="bi bi-box-arrow-left"></i>    
                                 Log Out 
                             </a>
@@ -130,65 +131,20 @@ if((request.getSession(false).getAttribute("Admin")== null) )
                     
                 </div>
                 <div class="folder-list col-10">
-
-                    <div class="list-items">
-                        <!-- Name category vs see all music in category-->
-                        <div class="title-items">
-                            <p>Mr Siro</p>
-                            <a href="#">see all</a>
-                        </div>
                         <div class="row">
                             <!-- music item -->
+                            <c:forEach items="${listAlbum}" var="album">
                             <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="#" class="content-items">
+                                <a href="GetSongAlbum?id=${album.id}" class="content-items">
                                     <div class="img-size">
-                                        <img src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
-                                            alt="">
+                                        <img src="getImageAlbum.jsp?id=${album.id}">
                                     </div>
-                                    <h5>Khóc cùng em</h5>
-                                    <p class="name-singer">Mr Siro</p>
+                                    <h5>${album.name}</h5>
+                                <p class="name-singer">${album.idSinger}</p>
                                 </a>
                             </div>
-                          <!-- row 2 -->
-                           
-                    <div class="list-items">
-                        <div class="title-items">
-                            <p>Mr Siro</p>
-                            <a href="#">see all</a>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="#" class="content-items">
-                                    <div class="img-size">
-                                        <img src="https://t2.genius.com/unsafe/440x440/https:%2F%2Fimages.genius.com%2Fe5c77d88b77995a9aabd03caec55940c.500x500x1.jpg"
-                                            alt="">
-                                    </div>
-                                    <h5>Khóc cùng em</h5>
-                                    <p class="name-singer">Mr Siro</p>
-                                </a>
-                            </div>
-                           
-                            <!-- row 3 -->
-                    <div class="list-items">
-                        <div class="title-items">
-                            <p>Mr Siro</p>
-                            <a href="#">see all</a>
-                        </div>
-                        <div class="row">
-                            
-                            <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="#" class="content-items">
-                                    <div class="img-size">
-                                        <img src="https://th.bing.com/th/id/OIP.FhozvTv1wkpmWwlCoD4qYQHaEK?w=299&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7"
-                                            alt="">
-                                    </div>
-                                    <h5>Khóc cùng em</h5>
-                                    <p class="name-singer">Mr Siro</p>
-                                </a>
-                            </div>
-                           
-                        </div>
-                    </div>
+                            </c:forEach> 
+                         </div>
                 </div>
             </div>
 

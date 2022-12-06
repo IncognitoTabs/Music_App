@@ -19,6 +19,7 @@
     <title>Music</title>
     
 </head>
+
 <form action='/music_app/AddSinger' method='post' enctype='multipart/form-data'>
 <body>
     <div class="header">
@@ -27,17 +28,14 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="folder-list_header collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- back next button -->
-                    <div class="navbar-nav me-auto mb-2 mb-lg-0 control-b-n">
-                        <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-left"></i></a>
-                        <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
+
                   
                     
                 </div>
             </nav>
         </div>
     </div>
-    <div class="container-fluid">
+        <div class="container-fluid">
         <div class="main">
             <div class="row">
                 <div class="menu-bar col-2">
@@ -49,55 +47,50 @@
                     <!-- nemu bar -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="./home_admin.html">
+                            <a class="nav-link" href="HomeAdmin">
                                 <i class="fa-solid fa-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./pages/search-page.html">
+                            <a class="nav-link" href="Search">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="./pages/music-category.html">
-                                <i class="bi bi-music-note-list margin-top"></i>
-                                My library
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./AddMusic.html">
+                            <a class="nav-link" href="AddSong">
                                 <i class="bi bi-plus-circle-fill"></i>    
                                 Add Music
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="AddAlbum.html">
+                            <a class="nav-link" href="AddAlbum">
                                 <i class="bi bi-journal-plus"></i>    
                                 Add Album
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./AddSingle.html">
+                            <a class="nav-link" href="AddSinger">
                                 <i class="bi bi-person-plus-fill"></i>    
                                 Add Singer
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./MusicManager.html">
+                            <a class="nav-link" href="GetSong">
                                 <i class="bi bi-file-earmark-music-fill"></i>    
                                 Song Manager
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./AlbumManager.html">
+                            <a class="nav-link" href="GetAlbum">
                                 <i class="bi bi-journal-album"></i>    
                                 Album Manager
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="LogoutServlet">
                                 <i class="bi bi-box-arrow-left"></i>    
                                 Log Out 
                             </a>
@@ -121,10 +114,12 @@
                         <div class="row">
                             <div class="addmusic">
                                 <p style="color: white;" > Singer Name
+                                <br>
+                                <p style="color: red;">${errorString}</p>
                                     <div class="input-group mb-3">
-                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >
-                                       
+                                        <input type="text" name="SingerName" class="form-control" placeholder="Input Singer name here!"  >  
                                       </div>
+                                      
                                 </p>
                             </div>
                            

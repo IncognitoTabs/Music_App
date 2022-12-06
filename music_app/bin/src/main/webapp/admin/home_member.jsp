@@ -1,3 +1,8 @@
+<%-- 
+    Document   : home_member
+    Created on : Nov 6, 2022, 2:19:45 PM
+    Author     : hoang
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -67,26 +72,26 @@ if((request.getSession(false).getAttribute("User")== null) )
                     <!-- nemu barr -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="./home_member.html">
+                            <a class="nav-link" href="HomeMember">
                                 <i class="fa-solid fa-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./SearchMember.html">
+                            <a class="nav-link" href="SearchMember">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./pages/music-category.html">
+                            <a class="nav-link" href="MyLibrary">
                                 <i class="bi bi-music-note-list margin-top"></i>
                              My Album
                             </a>
                         </li>
                    
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="LogoutServlet">
                                 <i class="bi bi-box-arrow-left"></i>    
                                 Log Out 
                             </a>

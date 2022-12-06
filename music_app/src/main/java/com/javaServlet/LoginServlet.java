@@ -1,22 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.javaServlet;
 
-import java.io.IOException;
-
+import com.javaDTO.Album;
+import com.javaDTO.Singer;
+import com.javaDao.AlbumDAO;
 import com.javaDao.LoginDAO;
+import com.javaDao.MyUtils;
+import com.javaDao.SingerDAO;
 import com.oracle.music_app.model.User;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
+/**
+ *
+ * @author hoang
+ */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
@@ -46,7 +57,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -57,7 +68,6 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final long serialVersionUID = 1L;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,31 +81,75 @@ public class LoginServlet extends HttpServlet {
         {
             User loginBean = loginDao.authenticateUser(email,password);
 
-
             switch (loginBean.getDecentralization()) {
                 case 1:
                     {
+                        
+                        Connection conn = MyUtils.getStoredConnection(request);
+
+                        List<Album> listAlbum = null;
+                        try {
+                            listAlbum=AlbumDAO.queryAlbum(conn);
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        for(int i=0; i<listAlbum.size();i++) {
+                            Singer singer=null;
+                            try {
+                                singer=SingerDAO.findSinger(conn, listAlbum.get(i).getIdSinger());
+                            } catch (SQLException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                            if(singer!=null) {
+                                listAlbum.get(i).setIdSinger(singer.getName());
+                            }
+                        }                       
                         System.out.println("Admin's Home");
                         HttpSession session = (HttpSession) request.getSession(); //Creating a session
                         session.setAttribute("Admin", email); //setting session attribute
                         request.setAttribute("userName", loginBean.getFull_name());
+                        request.setAttribute("listAlbum", listAlbum);
                         request.getRequestDispatcher("/admin/home_admin.jsp").forward(request, response);
                         break;
                     }
                 case 0:
                     {
+                        
+                        Connection conn = MyUtils.getStoredConnection(request);
+
+                        List<Album> listAlbum = null;
+                        try {
+                            listAlbum=AlbumDAO.queryAlbum(conn);
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        for(int i=0; i<listAlbum.size();i++) {
+                            Singer singer=null;
+                            try {
+                                singer=SingerDAO.findSinger(conn, listAlbum.get(i).getIdSinger());
+                            } catch (SQLException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                            if(singer!=null) {
+                                listAlbum.get(i).setIdSinger(singer.getName());
+                            }
+                        }      
                         System.out.println("User's Home");
                         HttpSession session = (HttpSession) request.getSession();
                         session.setMaxInactiveInterval(10*60);
                         session.setAttribute("User", email);
                         request.setAttribute("userName", loginBean.getFull_name());
+                        request.setAttribute("listAlbum", listAlbum);
                         request.getRequestDispatcher("/admin/home_member.jsp").forward(request, response);
                         break;
                     }
                 default:
                     request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
                     break;
-
             }
         }
         catch (IOException e1)
@@ -116,5 +170,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
+
 }

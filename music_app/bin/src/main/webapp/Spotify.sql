@@ -12,8 +12,7 @@ create table album(
 	artWorkPath varchar2(255),
 	postedBy_album nvarchar2(255),
 	show nvarchar2(255),
-	postDay date,
-	picture_album blob
+	postDay date
 )
 
 create table singer(
@@ -34,8 +33,7 @@ create table song(
 	path_song varchar2(255),
 	listens number (10),
 	postBy_song nvarchar2(255),
-	postDay_song date,
-	picture_song blob
+	postDay_song date
 )
 
 
