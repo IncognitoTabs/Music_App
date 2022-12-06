@@ -15,8 +15,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 @WebServlet(urlPatterns={"/GetGenres"})
-public class GetGenres extends HttpServlet{
+public class GetGenres extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -48,4 +49,5 @@ public class GetGenres extends HttpServlet{
             throws ServletException, IOException {
         doGet(request, response);
     }
+
 }

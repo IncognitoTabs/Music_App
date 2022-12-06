@@ -44,55 +44,18 @@
                     <!-- nemu bar -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="HomeAdmin">
+                            <a class="nav-link" href="HomeGuest">
                                 <i class="fa-solid fa-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Search">
+                            <a class="nav-link" href="SearchGuest">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddSong">
-                                <i class="bi bi-plus-circle-fill"></i>    
-                                Add Music
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddAlbum">
-                                <i class="bi bi-journal-plus"></i>    
-                                Add Album
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddSinger">
-                                <i class="bi bi-person-plus-fill"></i>    
-                                Add Singer
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="GetSong">
-                                <i class="bi bi-file-earmark-music-fill"></i>    
-                                Song Manager
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="GetAlbum">
-                                <i class="bi bi-journal-album"></i>    
-                                Album Manager
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="LogoutServlet">
-                                <i class="bi bi-box-arrow-left"></i>    
-                                Log Out 
-                            </a>
-                        </li>
-
+   
                     </ul>
                     
                 </div>
@@ -123,8 +86,7 @@
                                 <p class="text-note-list">ALBUM</p>
                             </div>
                        </div>
-                    </div>
-               
+                    </div>           
                         <!-- list song -->
                          <div class="note-item">
                          
@@ -150,14 +112,25 @@
     </div>
    </div>
 
-    <!-- <audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" controls></audio> -->
    <div class="footer">
-     <audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" controls></audio>
+    <!-- info song -->
+<audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" controls></audio>
+    </div>
+    <!-- change volume -->
+    <div class="volume-music">
+        <i class="bi bi-volume-down-fill volume-music-icon"></i>
+        <i class="fa-solid fa-volume-xmark none-btn"></i>
+        <input type="range" value="100" step="5" class="volume-change">
+        <span></span>
+        <i class="fa-solid fa-download icon-download"></i>
+    </div>
 </div>
-		<script src="js/users.js"></script>
+
+    <script src="../js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+
 
 </body>
 

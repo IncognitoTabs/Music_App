@@ -105,9 +105,7 @@ public class LoginServlet extends HttpServlet {
                             if(singer!=null) {
                                 listAlbum.get(i).setIdSinger(singer.getName());
                             }
-                        }
-                        
-
+                        }                       
                         System.out.println("Admin's Home");
                         HttpSession session = (HttpSession) request.getSession(); //Creating a session
                         session.setAttribute("Admin", email); //setting session attribute
@@ -118,11 +116,34 @@ public class LoginServlet extends HttpServlet {
                     }
                 case 0:
                     {
+                        
+                        Connection conn = MyUtils.getStoredConnection(request);
+
+                        List<Album> listAlbum = null;
+                        try {
+                            listAlbum=AlbumDAO.queryAlbum(conn);
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        for(int i=0; i<listAlbum.size();i++) {
+                            Singer singer=null;
+                            try {
+                                singer=SingerDAO.findSinger(conn, listAlbum.get(i).getIdSinger());
+                            } catch (SQLException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                            if(singer!=null) {
+                                listAlbum.get(i).setIdSinger(singer.getName());
+                            }
+                        }      
                         System.out.println("User's Home");
                         HttpSession session = (HttpSession) request.getSession();
                         session.setMaxInactiveInterval(10*60);
                         session.setAttribute("User", email);
                         request.setAttribute("userName", loginBean.getFull_name());
+                        request.setAttribute("listAlbum", listAlbum);
                         request.getRequestDispatcher("/admin/home_member.jsp").forward(request, response);
                         break;
                     }

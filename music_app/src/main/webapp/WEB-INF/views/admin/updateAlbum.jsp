@@ -27,11 +27,7 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="folder-list_header collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- back next button -->
-                    <div class="navbar-nav me-auto mb-2 mb-lg-0 control-b-n">
-                        <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-left"></i></a>
-                        <a class="back-next--button" href="#"><i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                  
+
                     
                 </div>
             </nav>

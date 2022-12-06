@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,66 +44,29 @@
                         </div>
                     </div>
                     <!-- nemu bar -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="HomeAdmin">
+                            <a class="nav-link" href="HomeGuest">
                                 <i class="fa-solid fa-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Search">
+                            <a class="nav-link" href="SearchGuest">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddSong">
-                                <i class="bi bi-plus-circle-fill"></i>    
-                                Add Music
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddAlbum">
-                                <i class="bi bi-journal-plus"></i>    
-                                Add Album
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddSinger">
-                                <i class="bi bi-person-plus-fill"></i>    
-                                Add Singer
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="GetSong">
-                                <i class="bi bi-file-earmark-music-fill"></i>    
-                                Song Manager
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="GetAlbum">
-                                <i class="bi bi-journal-album"></i>    
-                                Album Manager
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="LogoutServlet">
-                                <i class="bi bi-box-arrow-left"></i>    
-                                Log Out 
-                            </a>
-                        </li>
-
+      
                     </ul>
                     
                 </div>
                 <div class="folder-list col-10">
 
                     <div class="list-items">
-                        <!-- Name category vs see all music in category-->
+                        <!-- Name category vs see alll music in category-->
                         <div class="title-items">
-                            <p>Category Manager</p>
+                            <p>Album ${album.name} </p>
                           
                             
                         </div>
@@ -113,24 +75,24 @@
                         <table class="table table-dark">
                             <thead>
                               <tr>
-                                <th scope="col">id</th>
-                                <th scope="col">Category Name</th>
-                               
+                                <th scope="col">Music Name</th>
+                                <th scope="col">Singer</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Act</th>
 
                               </tr>
                             </thead>
                             <tbody>
-                                     <c:forEach items="${genresList}" var="genres">
+                              <tr>
+                               <c:forEach items="${songList}" var="song" >
 		                              <tr>
-		                                <th scope="row">${genres.id}</th>
-		                                <td >${genres.name} </td>   
-		                           
+		                                <td >${song.name} </td>   
+		                           		<td >${song.idSinger}</td> 
+		                           		<td >${song.idGenre} </td> 
 		                                <td>
-		                                    <a href="UpdateGenres?id=${genres.id}"
-		                                    class="btn btn-primary btn-lg active btnUpdate" role="button" aria-pressed="true">Update</a>
-		                                    <a href="DeleteGenres?id=${genres.id}"  class="btn btn-danger" role="button" aria-pressed="true">Danger</a>  </td>
-       								</c:forEach>  
+		                                    <a href="PlaySongGuest?id=${song.id}"
+		                                    class="btn btn-primary btn-lg active btnUpdate" role="button" aria-pressed="true">Play</a>
+       								</c:forEach> 
                             </tbody>
                           </table>
                             

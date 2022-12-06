@@ -18,7 +18,7 @@
 
     <title>Music</title>
 </head>
-<form action='/music_app/Search' method='post' >
+<form action='/music_app/SearchMember' method='post' >
 <body>
     <div class="header">
         <div class="col-2"></div>
@@ -90,20 +90,6 @@
         <!-- Dropdown -->
 
 
-          
-                   <div class="dropdown">
-                       <button class="btn btn-secondary dropdown-toggle" type="button" 
-                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Member 
-                        </button>
-                         
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                         
-                            <li> <a class="dropdown-item" href="#">Log Out</a></li>
-                          </ul>
-                        
-                        </div>
-                          
                     
                 </div>
             </nav>
@@ -121,55 +107,29 @@
                     <!-- nemu bar -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="HomeAdmin">
+                            <a class="nav-link" href="HomeMember">
                                 <i class="fa-solid fa-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Search">
+                            <a class="nav-link" href="SearchMember">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddSong">
-                                <i class="bi bi-plus-circle-fill"></i>    
-                                Add Music
+                     <li class="nav-item">
+                            <a class="nav-link" href="MyLibrary">
+                                <i class="bi bi-music-note-list margin-top"></i>
+                                My library
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddAlbum">
-                                <i class="bi bi-journal-plus"></i>    
-                                Add Album
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="AddSinger">
-                                <i class="bi bi-person-plus-fill"></i>    
-                                Add Singer
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="GetSong">
-                                <i class="bi bi-file-earmark-music-fill"></i>    
-                                Song Manager
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="GetAlbum">
-                                <i class="bi bi-journal-album"></i>    
-                                Album Manager
-                            </a>
-                        </li>
-                        <li class="nav-item">
+                                                <li class="nav-item">
                             <a class="nav-link" href="LogoutServlet">
                                 <i class="bi bi-box-arrow-left"></i>    
                                 Log Out 
                             </a>
-                        </li>
-
+                            </li>
                     </ul>
                     
                 </div>
@@ -181,7 +141,7 @@
                             <!-- music item -->
                             <c:forEach items="${listSong}" var="song">
                             <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="PlaySong?id=${song.id}" class="content-items">
+                                <a href="PlaySongMember?id=${song.id}" class="content-items">
                                     <div class="img-size">
                                         <img src="getImageSong.jsp?id=${song.id}">
                                     </div>
