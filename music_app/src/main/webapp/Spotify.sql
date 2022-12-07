@@ -49,6 +49,12 @@ create table users(
 	registration_date date,
 	avatar blob
 )
+
+create table mylibrary(
+    id_song nvarchar2(10),
+    id_user nvarchar2(10)
+)
+
 ALTER TABLE album 
 ADD CONSTRAINT fk_singer_album
 FOREIGN KEY (id_singer) REFERENCES singer(id_singer);
@@ -623,4 +629,4 @@ begin
     dbms_output.put_line('you inserted a line by '||v_user);
 end;
 
-insert into album(name_albums,id_singer) values(N'Buowsc qua nhau','10');
+
