@@ -7,6 +7,8 @@ package com.javaDao;
 
 import com.javaConnection.OracleConnection;
 import com.oracle.music_app.model.User;
+
+import java.lang.invoke.StringConcatFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,25 +34,40 @@ public class LoginDAO {
         String emailDB = "";
         String passwordDB = "";
         String fullnameDB = "";
+        String idUserDB="";
+        String accountBD="";
         int roleDB = 0;
             try {
                 con = OracleConnection.getOracleConnection();
                 statement = con.createStatement();
-                resultSet = statement.executeQuery("select EMAIL, PASSWORD, NAME_USER, DECENTRALIZATION from users");
+                resultSet = statement.executeQuery("select NAME_ACCOUNT, ID_USER, EMAIL, PASSWORD, NAME_USER, DECENTRALIZATION from users");
                 while(resultSet.next())
                 {
+                    accountBD=resultSet.getString("NAME_ACCOUNT");
+                    idUserDB=resultSet.getString("ID_USER");
                     emailDB = resultSet.getString("EMAIL");
                     passwordDB = resultSet.getString("PASSWORD");
                     roleDB = resultSet.getInt("DECENTRALIZATION");
                     fullnameDB = resultSet.getString("NAME_USER");
 
                     if(email.equals(emailDB) && password.equals(passwordDB) && roleDB == 1){
+                        loginBean.setPassword(passwordDB);
+                        loginBean.setAccount_name(accountBD);
+                        loginBean.setId(idUserDB);
                         loginBean.setFull_name(fullnameDB);
                         loginBean.setDecentralization(1);
+                        break;
                     }
                     else if(email.equals(emailDB) && password.equals(passwordDB) && roleDB == 0){
+                        loginBean.setPassword(passwordDB);
+                        loginBean.setAccount_name(accountBD);
+                        loginBean.setId(idUserDB);
                         loginBean.setFull_name(fullnameDB);
                         loginBean.setDecentralization(0);
+                        break;
+                    }
+                    else if(!password.equals(passwordDB)) {
+                        loginBean.setDecentralization(-1);
                     }
                 }
             } catch (SQLException ex) {

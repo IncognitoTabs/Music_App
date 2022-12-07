@@ -19,7 +19,12 @@
 
     <title>Music</title>
 </head>
-
+<% //In case, if User session is not set, redirect to Login page.
+if((request.getSession(false).getAttribute("User")== null) )
+{
+%>
+<jsp:forward page="/pages/login.jsp"></jsp:forward>
+<%} %>
    <div class="header ">
     <div class="col-10">
        <nav class=" navbar navbar-expand-lg">
@@ -80,13 +85,14 @@
                 </div>            
                 
                 <div class="container__info-list">
+                <p style="color:green;">${errorString}</p>
                     <div class="list">
                          <!-- note -->
                          <div class="note-item">
                             <div class="list__id">
                                 <p class="text-note-list">#</p> 
                             </div>
-                            <div class="list__title">
+                            <div class="list__album">
                                 <p class="text-note-list">TITLE</p> 
                             </div>
                             <div class="list__album">
@@ -94,6 +100,9 @@
                             </div>
    							<div class="list__album">
                                 <p class="text-note-list">ALBUM</p>
+                            </div>
+                               							<div class="list__album">
+                                <p class="text-note-list"></p>
                             </div>
                        </div>
                     </div>           
@@ -103,7 +112,7 @@
                             <div class="list__id">
        
                             </div>
-                            <div class="list__title">
+                            <div class="list__album">
                                 <p class="text-note-list">${song.name}</p> 
                             </div>
                                <div class="list__album">
@@ -112,10 +121,11 @@
                             <div class="list__album">
                                 <p class="text-note-list">${song.idAlbum}</p>
                             </div>
+                            <form action='/music_app/AddMyLibrary?id=${song.id}' method='post'>
                             <div class="list__album">
-                                	                                    <a href="AddMyLibrary?id=${song.id}"
-		                                    class="btn btn-primary btn-lg active btnUpdate" role="button" aria-pressed="true">Add My Library</a>
+							<button type="submit" class="btn btn-success">Add MyLibrary</button>
                             </div>
+                            </form>
                        </div>
                 </div>
                  </div>

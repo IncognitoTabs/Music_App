@@ -18,7 +18,12 @@
 
     <title>Music</title>
 </head>
-
+<% //In case, if Admin session is not set, redirect to Login page
+if((request.getSession(false).getAttribute("Admin")== null) )
+{
+%>
+<jsp:forward page="/pages/login.jsp"></jsp:forward>
+<%} %>
 <body>
     <div class="header">
         <div class="col-2"></div>

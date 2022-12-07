@@ -4,20 +4,20 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.javaDao.MyLibraryDAO;
 import com.javaDao.MyUtils;
 import com.javaDao.SongDAO;
-import com.javaDao.AlbumDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-@WebServlet(urlPatterns = { "/DeleteAlbum" })
-public class DeleteAlbum extends HttpServlet {
+@WebServlet(urlPatterns = { "/DeleteSongMyLibrary" })
+public class DeleteMyLibrary extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public DeleteAlbum() {
+    public DeleteMyLibrary() {
         super();
     }
 
@@ -29,21 +29,15 @@ public class DeleteAlbum extends HttpServlet {
         String id = (String) request.getParameter("id");
 //
 //        String errorString = null;
-
+        String idUser =(String) request.getSession(false).getAttribute("idUser");
         try {
-            AlbumDAO.deleteAlbum(conn, id);
-            try {
-                SongDAO.deleteSongAlbum(conn, id);
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            response.sendRedirect(request.getContextPath() + "/GetAlbum");
+            MyLibraryDAO.deleteMylibrary(conn, idUser, id);
+            response.sendRedirect(request.getContextPath() + "/MyLibrary");
         } catch (SQLException e) {
             e.printStackTrace();
 //            errorString = e.getMessage();
         } 
-
+        
 //        // Nếu có lỗi, forward (chuyển tiếp) sang trang thông báo lỗi.
 //        if (errorString != null) {
 //            // Lưu thông tin vào request attribute trước khi forward sang views.

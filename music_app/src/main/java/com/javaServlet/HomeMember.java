@@ -72,7 +72,9 @@ public class HomeMember extends HttpServlet{
 //            }
 //        }
         //request.setAttribute("errorString", errorString);
+        String userName =(String) request.getSession(false).getAttribute("Name");
         request.setAttribute("listAlbum", listAlbum);
+        request.setAttribute("userName", userName);
         //request.setAttribute("errorString", errorString);
 //       Forward sang /WEB-INF/views/productListView.jsp
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/user/homeMember.jsp");

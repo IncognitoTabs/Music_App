@@ -18,7 +18,14 @@
 
     <title>Music</title>
 </head>
+<% //In case, if User session is not set, redirect to Login page.
+if((request.getSession(false).getAttribute("User")== null) )
+{
+%>
+<jsp:forward page="/pages/login.jsp"></jsp:forward>
+<%} %>
 <form action='/music_app/SearchMember' method='post' >
+
 <body>
     <div class="header">
         <div class="col-2"></div>

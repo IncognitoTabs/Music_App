@@ -1,10 +1,5 @@
-<%-- 
-    Document   : home_member
-    Created on : Nov 6, 2022, 2:19:45 PM
-    Author     : hoang
---%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +17,7 @@
    
 
     <title>Music</title>
+    
 </head>
 <% //In case, if User session is not set, redirect to Login page.
 if((request.getSession(false).getAttribute("User")== null) )
@@ -29,37 +25,21 @@ if((request.getSession(false).getAttribute("User")== null) )
 %>
 <jsp:forward page="/pages/login.jsp"></jsp:forward>
 <%} %>
+<form action='/music_app/UpdateUser' method='post' >
 <body>
     <div class="header">
         <div class="col-2"></div>
         <div class="col-10">
             <nav class="navbar navbar-expand-lg">
                 <div class="folder-list_header collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- back next button -->
-                    <div class="navbar-nav me-auto mb-2 mb-lg-0 control-b-n">
 
-                    </div>
-                    <!-- Dropdown -->
-          
-                   <div class="dropdown">
-                       <button class="btn btn-secondary dropdown-toggle" type="button" 
-                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome, <%=request.getAttribute("userName") %> 
-                        </button>
-                         
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="GetInfoUser">User</a></li>
-                            <li> <a class="dropdown-item" href="<%=request.getContextPath()%>/LogoutServlet">Log Out</a></li>
-                          </ul>
-                        
-                        </div>
-                          
+                  
                     
                 </div>
             </nav>
         </div>
     </div>
-    <div class="container-fluid">
+        <div class="container-fluid">
         <div class="main">
             <div class="row">
                 <div class="menu-bar col-2">
@@ -68,7 +48,7 @@ if((request.getSession(false).getAttribute("User")== null) )
                             <p>Music</p>
                         </div>
                     </div>
-                    <!-- nemu barr -->
+                    <!-- nemu bar -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="HomeMember">
@@ -83,7 +63,7 @@ if((request.getSession(false).getAttribute("User")== null) )
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="MyLibrary">
+                            <a class="nav-link" href="MyLirary">
                                 <i class="bi bi-music-note-list margin-top"></i>
                                 My library
                             </a>
@@ -93,25 +73,63 @@ if((request.getSession(false).getAttribute("User")== null) )
                                 <i class="bi bi-box-arrow-left"></i>    
                                 Log Out 
                             </a>
+                        </li>
                     </ul>
                     
                 </div>
                 <div class="folder-list col-10">
+
+                    <div class="list-items">
+                        <!-- Name category vs see all music in category-->
+                        <div class="title-items">
+                            <p>Update User ${name}</p>
+                          
+                            
+                        </div>
+
+                        </div>
+                        <!-- name Category -->
                         <div class="row">
-                            <!-- music item -->
-                            <c:forEach items="${listAlbum}" var="album">
-                            <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="GetSongAlbumMember?id=${album.id}" class="content-items">
-                                    <div class="img-size">
-                                        <img src="getImageAlbum.jsp?id=${album.id}">
-                                    </div>
-                                    <h5>${album.name}</h5>
-                                <p class="name-singer">${album.idSinger}</p>
-                                </a>
+                            <div class="addmusic">
+                                <p style="color: white;" >Full Name
+                                    <div class="input-group mb-3">
+                                        <input type="text" value="${name}"  name ='name'class="form-control" placeholder="Input full name user!"  >
+                                       
+                                      </div>
+                                </p>
+                                                            <div class="addmusic">
+                                <p style="color: white;" >Email
+                                    <div class="input-group mb-3">
+                                        <input type="email" value="${email}" disabled name ='GenresName'class="form-control" placeholder=""  >
+                                       
+                                      </div>
+                                </p>
+                                                            <div class="addmusic">
+                                <p style="color: white;" >Name Accout
+                                    <div class="input-group mb-3">
+                                        <input type="text" value="${account}" disabled name ='GenresName'class="form-control" placeholder=""  >
+                                       
+                                      </div>
+                                </p>
+                                                            <div class="addmusic">
+                                <p style="color: white;" >Password
+                                    <div class="input-group mb-3">
+                                        <input type="text" value="${password}"  name ='password'class="form-control" placeholder="Input password!"  >
+                                       
+                                      </div>
+                                </p>
                             </div>
-                            </c:forEach> 
-                         </div>
+                          
+                            <!--add Category  -->
+                            <div class="addmusic">
+                                <button type="submit" class="btn btn-success">Update User</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                   
                 </div>
+            </div>
 
         </div>
     </div>
@@ -122,5 +140,5 @@ if((request.getSession(false).getAttribute("User")== null) )
         crossorigin="anonymous"></script>
 
 </body>
-
+</form>
 </html>

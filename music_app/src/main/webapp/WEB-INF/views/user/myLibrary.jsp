@@ -1,8 +1,3 @@
-<%-- 
-    Document   : home_member
-    Created on : Nov 6, 2022, 2:19:45 PM
-    Author     : hoang
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
@@ -22,6 +17,7 @@
    
 
     <title>Music</title>
+    
 </head>
 <% //In case, if User session is not set, redirect to Login page.
 if((request.getSession(false).getAttribute("User")== null) )
@@ -36,39 +32,24 @@ if((request.getSession(false).getAttribute("User")== null) )
             <nav class="navbar navbar-expand-lg">
                 <div class="folder-list_header collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- back next button -->
-                    <div class="navbar-nav me-auto mb-2 mb-lg-0 control-b-n">
-
-                    </div>
-                    <!-- Dropdown -->
-          
-                   <div class="dropdown">
-                       <button class="btn btn-secondary dropdown-toggle" type="button" 
-                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome, <%=request.getAttribute("userName") %> 
-                        </button>
-                         
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="GetInfoUser">User</a></li>
-                            <li> <a class="dropdown-item" href="<%=request.getContextPath()%>/LogoutServlet">Log Out</a></li>
-                          </ul>
-                        
-                        </div>
-                          
+       
+                  
                     
                 </div>
             </nav>
         </div>
     </div>
-    <div class="container-fluid">
+        <div class="container-fluid">
         <div class="main">
             <div class="row">
                 <div class="menu-bar col-2">
                     <div class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="title-app">
-                            <p>Music</p>
+                            <p>My Library</p>
                         </div>
                     </div>
-                    <!-- nemu barr -->
+                    <!-- nemu bar -->
+
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="HomeMember">
@@ -97,21 +78,46 @@ if((request.getSession(false).getAttribute("User")== null) )
                     
                 </div>
                 <div class="folder-list col-10">
-                        <div class="row">
-                            <!-- music item -->
-                            <c:forEach items="${listAlbum}" var="album">
-                            <div class="col-12 col-sm-6 col-md-2 image">
-                                <a href="GetSongAlbumMember?id=${album.id}" class="content-items">
-                                    <div class="img-size">
-                                        <img src="getImageAlbum.jsp?id=${album.id}">
-                                    </div>
-                                    <h5>${album.name}</h5>
-                                <p class="name-singer">${album.idSinger}</p>
-                                </a>
-                            </div>
-                            </c:forEach> 
-                         </div>
+
+                    <div class="list-items">
+                        <!-- Name category vs see alll music in category-->
+                        <div class="title-items">
+                            <p>Music Manager</p>
+                          
+                            
+                        </div>
+
+                        </div>
+                        <table class="table table-dark">
+                            <thead>
+                              <tr>
+                                <th scope="col">Music Name</th>
+                                <th scope="col">Singer</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Act</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                               <c:forEach items="${songList}" var="song" >
+		                              <tr>
+		                                <td >${song.name} </td>   
+		                           		<td >${song.idSinger}</td> 
+		                           		<td >${song.idGenre} </td> 
+		                                <td>
+		                                    <a href="PlaySongMember?id=${song.id}"
+		                                    class="btn btn-primary btn-lg active btnUpdate" role="button" aria-pressed="true">Play</a>
+		                                    <a href="DeleteSongMyLibrary?id=${song.id}"  class="btn btn-danger" role="button" aria-pressed="true">Danger</a>  </td>
+       								</c:forEach> 
+                            </tbody>
+                          </table>
+                            
+                        </div>
+                    </div>
+                   
                 </div>
+            </div>
 
         </div>
     </div>

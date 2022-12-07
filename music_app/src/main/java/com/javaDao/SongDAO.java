@@ -156,4 +156,13 @@ public class SongDAO {
 
         pstm.executeUpdate();
     }
+    public static void deleteSongAlbum(Connection conn, String id) throws SQLException {
+        String sql = "Delete From song where id_album= ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+
+        pstm.setString(1, id);
+
+        pstm.executeUpdate();
+    }
 }

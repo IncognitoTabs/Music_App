@@ -19,6 +19,12 @@
     <title>Music</title>
     
 </head>
+<% //In case, if Admin session is not set, redirect to Login page
+if((request.getSession(false).getAttribute("Admin")== null) )
+{
+%>
+<jsp:forward page="/pages/login.jsp"></jsp:forward>
+<%} %>
 <form action='/music_app/UpdateAlbum' method='post' enctype='multipart/form-data'>
 <body>
     <div class="header">

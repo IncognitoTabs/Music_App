@@ -14,6 +14,7 @@ import com.javaDao.SingerDAO;
 import com.oracle.music_app.model.User;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -141,12 +142,17 @@ public class LoginServlet extends HttpServlet {
                         System.out.println("User's Home");
                         HttpSession session = (HttpSession) request.getSession();
                         session.setMaxInactiveInterval(10*60);
+                        session.setAttribute("idUser", loginBean.getId());
                         session.setAttribute("User", email);
+                        session.setAttribute("Name", loginBean.getFull_name());
+                        session.setAttribute("password", loginBean.getPassword());
+                        session.setAttribute("account", loginBean.getAccount_name());
                         request.setAttribute("userName", loginBean.getFull_name());
                         request.setAttribute("listAlbum", listAlbum);
                         request.getRequestDispatcher("/admin/home_member.jsp").forward(request, response);
                         break;
                     }
+
                 default:
                     request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
                     break;
