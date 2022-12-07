@@ -105,7 +105,10 @@ const songImage = footer.querySelector('.info-form img')
 const songLastDuration = footer.querySelector('.final-time span')
 const songElementList = document.querySelectorAll('.list-item')
 
-
+function playMusic(e){
+	alert("Play music " + e );
+	songItemClick(e);
+}
 function myFunction() {
 	//song_list, image_album, name_singer, listener.
 }
@@ -113,7 +116,7 @@ function myFunction() {
 
 var albums = null;
 var songList = null;
-let id_album = document.getElementById("id_album").textContent;
+//let id_album = document.getElementById("id_album").textContent;
 function readJSON() {
 	/*	$.ajax({
 			type: "GET",
@@ -145,6 +148,7 @@ function readJSON() {
 
 function loadAlbum(response) {
 	console.log("Album: " + response);
+	
 }
 
 function CalBackSong(response) {
@@ -160,10 +164,10 @@ function CalBackSong(response) {
 }
 
 //readJSON();
-console.log(id_album);
-console.log(songList);
-songList = CalBackSong();
-console.log(songList);
+//console.log(id_album);
+//console.log(songList);
+//songList = CalBackSong();
+//console.log(songList);
 
 function truncate(text, number) {
 	if (!text) return ''
@@ -351,7 +355,7 @@ function resetClassSongItem() {
 	songElement.forEach(function(song) {
 		song.classList.remove('active')
 	})
-	resetValues()
+//	resetValues()
 
 }
 const total_duration = footer.querySelector('.now-time span')
@@ -372,28 +376,28 @@ let updateTimer;
 // them phan phat nhac
 
 function updateSong(song) {
-	const songNameItem = song.querySelector('.list__title-link-song')
-	const songSingerItem = song.querySelector('.list__title-link-singer')
-	const songImageItem = song.querySelector('.list__title-avatar')
-	const songDurationItem = song.querySelector('.list__time-time-song')
-	songName.innerHTML = songNameItem.textContent
-	songSinger.innerHTML = songSingerItem.textContent
-	songImage.src = songImageItem.src
+//	const songNameItem = song.querySelector('.list__title-link-song')
+	//const songSingerItem = song.querySelector('.list__title-link-singer')
+	//const songImageItem = song.querySelector('.list__title-avatar')
+	//const songDurationItem = song.querySelector('.list__time-time-song')
+	//songName.innerHTML = songNameItem.textContent
+	//songSinger.innerHTML = songSingerItem.textContent
+	//songImage.src = songImageItem.src
 
 	// songLastDuration.innerHTML = songDurationItem.textContent
 
-	song.classList.add('active')
-	song_id = songList[songIndex].id_song;
+//	song.classList.add('active')
+///song_id = songList[songIndex].id_song;
 
-	console.log("Song id: " + song_id)
+//	console.log("Song id: " + song_id)  songList[songIndex].path;
 
-	curr_track.src = songList[songIndex].path;
+	curr_track.src = 'http://localhost:8080/music_app/getFileSong.jsp?id=' + song;
 	curr_track.load();
 
-	updateTimer = setInterval(seekUpdate, 1000);
+updateTimer = setInterval(seekUpdate, 1000);
 	curr_track.addEventListener("ended", nextTrack);
 	pauseTrack()
-	playpauseTrack()
+playpauseTrack()
 }
 
 
@@ -401,15 +405,13 @@ function updateSong(song) {
 function songItemClick(e) {
 	resetClassSongItem()
 	resetValues()
-	const index = e.currentTarget.dataset.id
+	//const index = e.currentTarget.dataset.id
 
-	songIndex = Number.parseInt(index)
-	console.log("id:" + songIndex)
+//	songIndex = Number.parseInt(index)
+//	console.log("id:" + songIndex)
 
-
-	const listItem = e.currentTarget
-	updateSong(listItem)
-
+	//const listItem = e.currentTarget
+	updateSong(e)
 
 }
 

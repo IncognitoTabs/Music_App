@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.google.gson.Gson;
 import com.javaDTO.Album;
 import com.javaDTO.Genres;
 import com.javaDTO.Singer;
@@ -21,53 +22,57 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-@WebServlet(urlPatterns={"/GetSongAlbumGuest"})
+
+@WebServlet(urlPatterns = { "/GetSongAlbumGuest" })
 public class GetSongAlbumGuest extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    public GetSongAlbumGuest () {
+    public GetSongAlbumGuest() {
         super();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
         Connection conn = MyUtils.getStoredConnection(request);
-        String id  = (String) request.getParameter("id");
+        String id = (String) request.getParameter("id");
         List<Song> listSong = null;
         try {
             listSong = SongDAO.findSongAlbum(conn, id);
         } catch (SQLException e) {
             e.printStackTrace();
-            //errorString = e.getMessage();
+            // errorString = e.getMessage();
         }
-        for (int i=0; i<listSong.size(); i++) {
-            Singer singer= null;
-          try {
-              singer = SingerDAO.findSinger(conn,listSong.get(i).getIdSinger());
-          } catch (SQLException e) {
-              e.printStackTrace();
+        for (int i = 0; i < listSong.size(); i++) {
+            Singer singer = null;
+            try {
+                singer = SingerDAO.findSinger(conn, listSong.get(i).getIdSinger());
+            } catch (SQLException e) {
+                e.printStackTrace();
 //              errorString = e.getMessage();
-          }
-          listSong.get(i).setIdSinger(singer.getName());
-          Genres genres= null;
-        try {
-            genres = GenresDAO.findgenres(conn,listSong.get(i).getIdGenre());
-        } catch (SQLException e) {
-            e.printStackTrace();
+            }
+            listSong.get(i).setIdSinger(singer.getName());
+            Genres genres = null;
+            try {
+                genres = GenresDAO.findgenres(conn, listSong.get(i).getIdGenre());
+            } catch (SQLException e) {
+                e.printStackTrace();
 //            errorString = e.getMessage();
+            }
+            listSong.get(i).setIdGenre(genres.getName());
         }
-        listSong.get(i).setIdGenre(genres.getName());
-        }
-        Album album =null;
+        Album album = null;
         try {
-            album =AlbumDAO.findAlbum(conn, id);
+            album = AlbumDAO.findAlbum(conn, id);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        //request.setAttribute("errorString", errorString);
+       //    Gson son = new Gson();
+        
+        // request.setAttribute("errorString", errorString);
         request.setAttribute("songList", listSong);
         request.setAttribute("album", album);
         RequestDispatcher dispatcher = request.getServletContext()
