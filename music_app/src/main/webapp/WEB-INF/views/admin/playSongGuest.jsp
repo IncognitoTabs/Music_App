@@ -114,7 +114,8 @@
 
    <div class="footer">
     <!-- info song -->
-<audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" controls></audio>
+<audio src="getFileSong.jsp?id=${song.id}" style="margin-left: 25%;
+    width: 50%;" type="audio/mp3" preload="auto" controls autoplay="autoplay"></audio>
     </div>
     <!-- change volume -->
     <div class="volume-music">

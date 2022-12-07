@@ -137,7 +137,8 @@ if((request.getSession(false).getAttribute("User")== null) )
 
    <div class="footer">
     <!-- info song -->
-<audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" controls></audio>
+<audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" controls autoplay="autoplay" style="margin-left: 25%;
+    width: 50%;" ></audio>
     </div>
     <!-- change volume -->
     <div class="volume-music">

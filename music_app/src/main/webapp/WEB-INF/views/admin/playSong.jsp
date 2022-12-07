@@ -157,7 +157,8 @@ if((request.getSession(false).getAttribute("Admin")== null) )
 
     <!-- <audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" controls></audio> -->
    <div class="footer">
-     <audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" controls></audio>
+     <audio src="getFileSong.jsp?id=${song.id}" type="audio/mp3" style="margin-left: 25%;
+    width: 50%;" controls autoplay="autoplay"></audio>
 </div>
 		<script src="js/users.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
