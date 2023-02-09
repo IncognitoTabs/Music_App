@@ -1,6 +1,7 @@
 package com.javaDao;
 
 import java.io.InputStream;
+import java.lang.invoke.StringConcatFactory;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,6 +56,25 @@ public class UserDAO {
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, id);
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            String idUser = rs.getString("id_user");
+            String name = rs.getString("name_user");
+            String account = rs.getString("name_account");
+            String password = rs.getString("password");
+            String email = rs.getString("email");
+            User user = new User(idUser, name,account, password,email);
+            return user;
+        }
+        return null;
+    }
+    public static User finduserUP(Connection conn, String Email, String Password) throws SQLException {
+        String sql = "select a.NAME_ACCOUNT, a.ID_USER, a.EMAIL, a.PASSWORD, a.NAME_USER, a.DECENTRALIZATION from users a where a.password=? and a.email=?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(2, Email);
+        pstm.setString(1, Password);
         ResultSet rs = pstm.executeQuery();
 
         while (rs.next()) {

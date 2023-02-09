@@ -17,6 +17,7 @@ import java.net.URL;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -24,7 +25,7 @@ import org.json.JSONObject;
  * @author hoang
  */
 public class GG_Profile {
-    public User call_me(String code) throws ClientProtocolException, IOException{
+    public User call_me(String code) throws ClientProtocolException, IOException, JSONException{
         String response = Request.Post(Constants.GOOGLE_LINK_GET_TOKEN)
 				.bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
 						.add("client_secret", Constants.GOOGLE_CLIENT_SECRET)

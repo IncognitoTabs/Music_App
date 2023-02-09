@@ -48,7 +48,7 @@ if((request.getSession(false).getAttribute("Admin")== null) )
                             <li> <a class="dropdown-item" href="AddSinger">Add Singer</a></li>
                             <li><a class="dropdown-item" href="GetSong">Song Manager</a></li>
                             <li> <a class="dropdown-item" href="GetAlbum">Album Manager</a></li>
-                            <li> <a class="dropdown-item" href="#">Log Out</a></li>
+                            <li> <a class="dropdown-item" href="LogoutServlet">Log Out</a></li>
                           </ul>
                         
                         </div>
@@ -113,7 +113,7 @@ if((request.getSession(false).getAttribute("Admin")== null) )
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="LogoutServlet">
                                 <i class="bi bi-box-arrow-left"></i>    
                                 Log Out 
                             </a>

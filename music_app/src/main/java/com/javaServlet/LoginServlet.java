@@ -154,6 +154,13 @@ public class LoginServlet extends HttpServlet {
                     }
 
                 default:
+                    try ( PrintWriter out = response.getWriter()) {
+                        /* TODO output your page here. You may use following sample code. */
+                        out.println("<script type=\"text/javascript\">");
+                            out.println("alert('User or password incorrect');");
+                                out.println("location='./pages/login.jsp';");
+                           out.println("</script>");
+                    }
                     request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
                     break;
             }

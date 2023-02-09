@@ -10,6 +10,8 @@ import com.oracle.music_app.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,6 +20,7 @@ import java.sql.SQLException;
 public class RegisterDAO {
     public String registerUser(User registerBean) throws ClassNotFoundException
      {
+      
          String fullName = registerBean.getFull_name();
          String email = registerBean.getEmail();
          String password = registerBean.getPassword();
@@ -27,6 +30,7 @@ public class RegisterDAO {
          try
          {
              con = OracleConnection.getOracleConnection();
+             
              String query = "insert into users(ID_USER, NAME_USER, EMAIL, DECENTRALIZATION, PASSWORD) values (NULL,?,?,?,?)"; //Insert user details into the table 'USERS'
              preparedStatement = con.prepareStatement(query); //Making use of prepared statements here to insert bunch of data
              preparedStatement.setString(1, fullName);
